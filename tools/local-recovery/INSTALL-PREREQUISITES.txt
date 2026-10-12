@@ -1,0 +1,76 @@
+F6 GLOBAL HYPEROS4 DEV2-RI1 — LOCAL RECOVERY TEST CANDIDATE
+
+This is unchanged DEV2 image content with a new guarded installer. It is not a tested
+production ROM. Existing DEV2 policy diagnostics (77 strict assertions), development
+signer trust limits and hardware/boot/FBE test gaps still apply. Do not relock.
+
+FILES / INSTALL METHOD
+Copy this ENTIRE folder, including INSTALL-DEV2-RI1.zip, every payload.NNN.zip,
+PACKAGE-MANIFEST.json and SHA256SUMS, to external USB-OTG storage. Verify SHA256SUMS
+on the computer first. Select ONLY INSTALL-DEV2-RI1.zip in the inspected OrangeFox
+R12.0_202610011528 crypto recovery. Keep the USB attached throughout installation.
+The companions are below 2 GiB and use ordinary stored ZIP members; ZIP64, a single
+9 GiB recovery unzip and full-image RAM staging are avoided. ADB sideload of the
+control ZIP alone is unsupported because its companions must be adjacent files.
+Do not select payload ZIPs as installers.
+
+REQUIRED STARTING STATE — INSTALLER FAILS BEFORE WRITES IF CHECKS FAIL
+* POCO F6/peridot, bootloader already unlocked. No unlock/relock operation is supplied.
+* Current and selected boot slot A; exactly two slots. This installer never switches slots.
+* Running the exact supplied OrangeFox crypto build, including its inspected BusyBox,
+  Toybox and bootctl bytes. Recovery access/setup is a prerequisite, not performed here.
+* Slot-A firmware byte prefixes match exact Global OS3.0.303.0.WNPMIXM. Firmware,
+  bootloader firmware and Keymaster are checked but NOT rewritten. A different current
+  AOSP firmware base will abort; do not remove the checks to force an install.
+* Shared super capacity is exactly 9,126,805,504 bytes; every destination is an existing
+  unique block device with sufficient capacity.
+* No OTA/snapshot merge in progress. Boot HAL reports known NONE. Metadata is mounted
+  for inspection and /metadata/ota is absent or empty. Unknown state also aborts.
+  Never delete snapshot files to defeat this guard.
+* Userdata and all dynamic partitions are unmounted. ZIP companions are outside userdata.
+* At least 384 MiB of free /tmp RAM staging, adequate battery/power and restorable backups.
+
+CLEAN DATA / ENCRYPTION
+This candidate supports a clean-install test only. Existing encrypted or decrypted data
+migration has not been validated. The installer NEVER formats userdata or metadata, erases
+FRP, removes keys, changes FBE flags or applies disable-verity/decryption patches.
+Before starting, backups and a verified recovery procedure for clean userdata/metadata
+initialization must be available. Do not mistake a cache/Dalvik wipe for a clean-data
+initialization or use repeated formatting as a diagnostic recipe. This package does not
+certify the supplied recovery's format operation or any migration procedure.
+Disable automatic OrangeFox ROM/boot patch options (forced-encryption/verity/root patches).
+No such patch is part of this package. If recovery cannot perform the required clean-data
+workflow with encryption retained, stop; it is a remaining device-validation gate.
+
+WHAT WILL BE WRITTEN
+Shared super is replaced in checked 256 MiB chunks. Then only slot-A boot, dtbo,
+init_boot, vendor_boot and STOCK recovery are written, followed by signed vbmeta_system
+and top-level vbmeta. Every written range is synced and read back against its pinned hash.
+All images are byte-identical to verified DEV2. Firmware and slot-B physical boot/recovery
+partitions are untouched; slot-B LOGICAL super entries are empty. Slot B therefore is NOT
+an untouched previous-ROM rollback. Installation is not atomic.
+
+ORANGEFOX / AVB DECISION
+The supplied OrangeFox recovery has an unsigned AVB footer (algorithm NONE/no signing key).
+It cannot satisfy DEV2's retained OEM-signed recovery child-chain. It is not substituted
+into DEV2 or re-signed. This installer runs in the supplied recovery but restores STOCK
+DEV2 recovery on slot A. Permanent OrangeFox integration requires a separately reviewed
+recovery signing/chain design; no verification disable flags or new credentials are used.
+The supplied recovery's kernel-size field is zero. Do not infer that its image supports a
+temporary fastboot-boot route. Initial access and later recovery access remain to be tested.
+The stock recovery crypto syntax differs from the normal-boot explicit v2 wrapped-key
+fstab. Matching the normal-boot flags does not prove recovery decryption.
+
+AFTER INSTALLATION / FAILURE
+The installer neither formats nor reboots. Save the recovery log. Confirm that all writes
+and readbacks completed. Resolve the clean-data/recovery-access prerequisites before
+choosing any next device action. First boot, wrapped-key creation, credential unlock,
+reboot unlock, internal-storage access and recovery decryption require actual device tests.
+If any error occurs after "Preflight passed", the image set may be partially written.
+Do not boot system or assume slot B restores the old ROM. Use a separately established
+recovery/restoration procedure; no automatic rollback or reboot is implemented.
+
+Offline validation covers input/payload hashes, LP metadata/span integrity, preserved FBE
+configuration, retained recovery AVB relationship, package CRCs and selected installer
+failure guards. It does not prove bootloader acceptance, execution on a phone, power-loss
+recovery, key provisioning, clean-data formatting, decryption, app or hardware operation.

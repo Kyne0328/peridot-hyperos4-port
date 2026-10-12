@@ -1,0 +1,30 @@
+{
+  "commit": "5290a0114274c48b4b6a12bbf7e6e88a84b1438c",
+  "path": "logging_splitters.h",
+  "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/logging_splitters.h?format=TEXT",
+  "sha256": "6a0034179b9fe998afecd2de620f2fcb4273cc094f1b588017374de7bf1b22bd",
+  "bytes": 7117,
+  "extra_sources": [
+    {
+      "path": "strings.cpp",
+      "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/strings.cpp?format=TEXT",
+      "commit": "5290a0114274c48b4b6a12bbf7e6e88a84b1438c",
+      "bytes": 4892,
+      "sha256": "1e60decf121d8f795c2414b9caf12c489a7e03528097b4667da00eaee3b1ce5c"
+    },
+    {
+      "path": "stringprintf.cpp",
+      "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/stringprintf.cpp?format=TEXT",
+      "commit": "5290a0114274c48b4b6a12bbf7e6e88a84b1438c",
+      "bytes": 2262,
+      "sha256": "0ac350c5e3223eb714aa6a2a165541710bfd08f018c15e01fe5bbccb72d198ea"
+    },
+    {
+      "path": "posix_strerror_r.cpp",
+      "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/posix_strerror_r.cpp?format=TEXT",
+      "commit": "5290a0114274c48b4b6a12bbf7e6e88a84b1438c",
+      "bytes": 1032,
+      "sha256": "cdf44156debb328bb25af8f5df40f3b9703ff5797f5da25e5f6fcb8503e01eff"
+    }
+  ]
+}

@@ -1,0 +1,119 @@
+{
+  "aosp_release_tag": "aml_adb_331011040",
+  "aosp": {
+    "recovery": {
+      "repository": "platform/bootable/recovery",
+      "commit": "4bb77cd29253746942b2abca072c159bf660eeae",
+      "files": [
+        {
+          "path": "edify/expr.cpp",
+          "sha256": "f9315b5cc06adf73ba96f789de8e49bb2792068ba2f6e67aa49d157a6d6efe4f",
+          "url": "https://android.googlesource.com/platform/bootable/recovery/+/4bb77cd29253746942b2abca072c159bf660eeae/edify/expr.cpp?format=TEXT"
+        },
+        {
+          "path": "edify/parser.yy",
+          "sha256": "fa6a89c55d81b1d50a5954f42add76f9d8ce5317027ffa45ea9df50b6d237aa3",
+          "url": "https://android.googlesource.com/platform/bootable/recovery/+/4bb77cd29253746942b2abca072c159bf660eeae/edify/parser.yy?format=TEXT"
+        },
+        {
+          "path": "edify/lexer.ll",
+          "sha256": "04eea10827be985b8468c88096a97a2075a8639ec86b633a8a25d242003fd729",
+          "url": "https://android.googlesource.com/platform/bootable/recovery/+/4bb77cd29253746942b2abca072c159bf660eeae/edify/lexer.ll?format=TEXT"
+        },
+        {
+          "path": "edify/yydefs.h",
+          "sha256": "6a44cf51acf703c9e290f9afcdaaca68b132ef2e7d57163abd91775a430906ac",
+          "url": "https://android.googlesource.com/platform/bootable/recovery/+/4bb77cd29253746942b2abca072c159bf660eeae/edify/yydefs.h?format=TEXT"
+        },
+        {
+          "path": "edify/include/edify/expr.h",
+          "sha256": "a33e888c144009172d35a111d8db98d12a53c2072767f0edcbd925bfb121bc76",
+          "url": "https://android.googlesource.com/platform/bootable/recovery/+/4bb77cd29253746942b2abca072c159bf660eeae/edify/include/edify/expr.h?format=TEXT"
+        },
+        {
+          "path": "edify/include/edify/updater_interface.h",
+          "sha256": "6522665c1c28fc14c8a81b8604397a458c67d104f9af1187c410bd763a7022c7",
+          "url": "https://android.googlesource.com/platform/bootable/recovery/+/4bb77cd29253746942b2abca072c159bf660eeae/edify/include/edify/updater_interface.h?format=TEXT"
+        },
+        {
+          "path": "otautil/include/otautil/error_code.h",
+          "sha256": "b96506641cc57ea2b4dfa19bd2b1ca3b07a09e8f208a35a315b3fe991c68d75c",
+          "url": "https://android.googlesource.com/platform/bootable/recovery/+/4bb77cd29253746942b2abca072c159bf660eeae/otautil/include/otautil/error_code.h?format=TEXT"
+        },
+        {
+          "path": "NOTICE",
+          "sha256": "38751245389e1e23f73e6f5384b5cbe7fa972cc4410c5adc9c04b082a0b9561a",
+          "url": "https://android.googlesource.com/platform/bootable/recovery/+/4bb77cd29253746942b2abca072c159bf660eeae/NOTICE?format=TEXT"
+        }
+      ]
+    },
+    "libbase": {
+      "repository": "platform/system/libbase",
+      "commit": "5290a0114274c48b4b6a12bbf7e6e88a84b1438c",
+      "files": [
+        {
+          "path": "stringprintf.cpp",
+          "sha256": "0ac350c5e3223eb714aa6a2a165541710bfd08f018c15e01fe5bbccb72d198ea",
+          "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/stringprintf.cpp?format=TEXT"
+        },
+        {
+          "path": "strings.cpp",
+          "sha256": "1e60decf121d8f795c2414b9caf12c489a7e03528097b4667da00eaee3b1ce5c",
+          "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/strings.cpp?format=TEXT"
+        },
+        {
+          "path": "posix_strerror_r.cpp",
+          "sha256": "cdf44156debb328bb25af8f5df40f3b9703ff5797f5da25e5f6fcb8503e01eff",
+          "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/posix_strerror_r.cpp?format=TEXT"
+        },
+        {
+          "path": "include/android-base/stringprintf.h",
+          "sha256": "127525d36c8546925f09a3c2299a744080400b7ee73b64a1e9f8a6b9d27f2917",
+          "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/include/android-base/stringprintf.h?format=TEXT"
+        },
+        {
+          "path": "include/android-base/strings.h",
+          "sha256": "1e0ff3db7b3bf81622e07b18f0d3229176412b45908295a0c6c06edf371280c6",
+          "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/include/android-base/strings.h?format=TEXT"
+        },
+        {
+          "path": "include/android-base/parseint.h",
+          "sha256": "b6a36222e79416e514f160ee2c45387bd88b2b9310feeef3d1ab08132f571f6b",
+          "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/include/android-base/parseint.h?format=TEXT"
+        },
+        {
+          "path": "include/android-base/macros.h",
+          "sha256": "807fa6f265c578da20c6154b05ba8c9633bc38afd4a2eda5568ce1b22ef5b3af",
+          "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/include/android-base/macros.h?format=TEXT"
+        },
+        {
+          "path": "NOTICE",
+          "sha256": "e0afbb47be661ce2076d21a1d4dc02caa58b7c215ab7ff9d151b6724be341f77",
+          "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/NOTICE?format=TEXT"
+        }
+      ]
+    }
+  },
+  "archives": {
+    "zlib-1.3.2": {
+      "url": "https://zlib.net/zlib-1.3.2.tar.gz",
+      "sha256": "bb329a0a2cd0274d05519d61c667c062e06990d72e125ee2dfa8de64f0119d16",
+      "bytes": 1502830
+    },
+    "m4-1.4.20": {
+      "url": "https://ftp.gnu.org/gnu/m4/m4-1.4.20.tar.xz",
+      "sha256": "e236ea3a1ccf5f6c270b1c4bb60726f371fa49459a8eaaebc90b216b328daf2b",
+      "bytes": 2044756
+    },
+    "bison-3.8.2": {
+      "url": "https://ftp.gnu.org/gnu/bison/bison-3.8.2.tar.xz",
+      "sha256": "9bba0214ccf7f1079c5d59210045227bcf619519840ebfa80cd3849cff5a5bf2",
+      "bytes": 2817324
+    },
+    "flex-2.6.4": {
+      "url": "https://github.com/westes/flex/releases/download/v2.6.4/flex-2.6.4.tar.gz",
+      "sha256": "e87aae032bf07c26f85ac0ed3250998c37621d95f8bd748b31f15b33c45ee995",
+      "bytes": 1419096
+    }
+  }
+}

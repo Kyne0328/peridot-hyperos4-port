@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "id": "peridot-hyperos4-development-aosp-testkey-v0",
+  "mode": "development_aosp_testkey",
+  "production_trust": false,
+  "device_boot_tested": false,
+  "requires_unlocked_bootloader_or_accepted_custom_root": true,
+  "key": {
+    "path": "builder/tools/bin/keys/aosp-avb-testkey-rsa4096.pem",
+    "sha256": "6a224754880a57ab9cbd308267cd157d94cf05a1c8cb851aec4090e045d24121",
+    "expected_public_key_sha1": "2597c218aae470a130f61162feaae70afd97f011",
+    "algorithm": "SHA256_RSA4096",
+    "source": "AOSP platform/external/avb android-cts-17.0_r1 test/data/testkey_rsa4096.pem"
+  },
+  "security": {
+    "vbmeta_flags": 0,
+    "hashtree_disabled": false,
+    "verification_disabled": false,
+    "fake_locked_properties": false,
+    "userdata_encryption": "preserve_stock_fbe_and_metadata_encryption"
+  },
+  "boot": {
+    "partition_size": 100663296,
+    "rollback_index": 1785542400,
+    "hash_algorithm": "sha256",
+    "salt": "97b2c53022e8c0bd0b279c4c592a196126a6eb0a93647c2957b39dcd5f2dc1c9",
+    "properties": {
+      "com.android.build.boot.os_version": "14",
+      "com.android.build.boot.fingerprint": "Redmi/peridot/peridot:14/UKQ1.240624.001/OS3.0.305.0.WNPCNXM:user/release-keys",
+      "com.android.build.boot.security_patch": "2026-08-01"
+    }
+  },
+  "recovery": {
+    "partition_size": 104857600,
+    "rollback_index": 1,
+    "hash_algorithm": "sha256",
+    "salt": "1ba626d7d56d67762f911ce3e7619e742eeeb3301953ad14936d018c2346a6f4",
+    "properties": {
+      "com.android.build.recovery.fingerprint": "Redmi/peridot/peridot:14/UKQ1.240624.001/OS3.0.305.0.WNPCNXM:user/release-keys"
+    }
+  },
+  "product": {
+    "partition_size": 4379996160,
+    "hash_algorithm": "sha256",
+    "salt": "6bcf60f0e81f157561bedda1ebb9d558d1f3878e303afe764ce6ca81b40ecc03",
+    "generate_fec": false,
+    "footer_algorithm": "NONE",
+    "properties": {
+      "com.android.build.product.os_version": "17",
+      "com.android.build.product.fingerprint": "Xiaomi/madrid/miproduct:17/CP2A.260605.016/OS4.0.11.0.XEOCNXM:user/release-keys",
+      "com.android.build.product.security_patch": "2026-09-01"
+    }
+  },
+  "vbmeta_system": {
+    "padding_size": 4096,
+    "rollback_index": 1788220800,
+    "flags": 0,
+    "descriptor_sources": [
+      "product",
+      "system",
+      "system_ext"
+    ]
+  },
+  "vbmeta": {
+    "padding_size": 8192,
+    "rollback_index": 0,
+    "flags": 0,
+    "chains": [
+      {
+        "partition": "boot",
+        "rollback_slot": 3
+      },
+      {
+        "partition": "recovery",
+        "rollback_slot": 1
+      },
+      {
+        "partition": "vbmeta_system",
+        "rollback_slot": 2
+      }
+    ],
+    "descriptor_sources": [
+      "countrycode",
+      "dtbo",
+      "init_boot",
+      "mi_ext",
+      "odm",
+      "system_dlkm",
+      "vendor",
+      "vendor_boot",
+      "vendor_dlkm"
+    ]
+  },
+  "source_layout": {
+    "stock_physical": [
+      "boot",
+      "recovery",
+      "countrycode",
+      "dtbo",
+      "init_boot",
+      "vendor_boot"
+    ],
+    "stock_dynamic": [
+      "odm",
+      "system_dlkm",
+      "vendor",
+      "vendor_dlkm"
+    ],
+    "donor_userspace": [
+      "mi_ext",
+      "system",
+      "system_ext"
+    ]
+  },
+  "notes": [
+    "This profile uses a public AOSP test key and is development-only.",
+    "The rebuilt product keeps dm-verity/AVB hashtree verification enabled but omits FEC because the Android fec helper is not currently pinned in this builder.",
+    "Existing Madrid and peridot source images retain their original FEC data.",
+    "No AVB disable flags or fake locked/green properties are used."
+  ]
+}

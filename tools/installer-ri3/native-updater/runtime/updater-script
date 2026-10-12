@@ -1,0 +1,4 @@
+ui_print("RI3: paired recovery, one ZIP, signature verification ON, auto-reflash OFF required.");
+ui_print("Validating the signed package, Global firmware, snapshots and exact target ownership.");
+assert(ri3_install());
+ui_print("Verified install complete. Active slot A selected. No data wipe performed.");

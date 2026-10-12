@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "device": {
+    "codename": "peridot",
+    "marketing_names": [
+      "POCO F6",
+      "Redmi Turbo 3"
+    ],
+    "manufacturer": "Xiaomi",
+    "soc_family": "Qualcomm SM8635 / Snapdragon 8s Gen 3"
+  },
+  "hints": {
+    "architecture": "arm64",
+    "platform": "pineapple",
+    "ab_ota": true,
+    "virtual_ab": true,
+    "boot_image_header_version": 4,
+    "super_size_bytes": 9126805504,
+    "dynamic_partition_group": "xiaomi_dynamic_partitions",
+    "dynamic_partitions": [
+      "vendor",
+      "odm",
+      "system",
+      "product",
+      "mi_ext",
+      "vendor_dlkm",
+      "system_ext",
+      "system_dlkm"
+    ],
+    "physical_partition_sizes": {
+      "boot": 100663296,
+      "dtbo": 20971520,
+      "recovery": 104857600,
+      "init_boot": 8388608,
+      "vendor_boot": 100663296
+    }
+  },
+  "sources": [
+    {
+      "type": "public_device_tree",
+      "repository": "Peridot-Development/device_xiaomi_peridot",
+      "branch": "14.0",
+      "file": "BoardConfig.mk",
+      "blob_sha": "c7abf255bf3852df7855d2adebb465078af1b2fb",
+      "purpose": "bootstrap hints only; must be reconciled against the selected official peridot OTA"
+    }
+  ]
+}

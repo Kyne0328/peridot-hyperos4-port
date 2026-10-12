@@ -1,0 +1,124 @@
+{
+  "schema_version": 1,
+  "target": "peridot",
+  "donor": "madrid",
+  "donor_build": "OS4.0.11.0.XEOCNXM",
+  "target_stock": "OS3.0.305.0.WNPCNXM",
+  "policy": "evidence_only_until_runtime_verified",
+  "baseline": {
+    "preserve_stock_target": [
+      "boot",
+      "init_boot",
+      "vendor_boot",
+      "dtbo",
+      "recovery",
+      "vendor",
+      "odm",
+      "vendor_dlkm",
+      "system_dlkm",
+      "firmware partitions listed by the ownership plan"
+    ],
+    "preserve_security_model": [
+      "stock userdata file encryption",
+      "stock metadata encryption",
+      "stock mi_ext overlay architecture",
+      "stock AVB topology until rebuilt-image verification"
+    ],
+    "donor_userspace": [
+      "system",
+      "system_ext",
+      "product",
+      "mi_ext"
+    ],
+    "preferred_filesystem_strategy": "retain donor EROFS first; rebuild only when a proven patch requires it"
+  },
+  "confirmed_transplants": [
+    {
+      "path": "/product/etc/displayconfig/display_id_4630946545580055171.xml",
+      "source": "official_peridot_stock",
+      "evidence": "byte-identical in Mundo reference",
+      "status": "strong_candidate"
+    },
+    {
+      "path": "/product/etc/displayconfig/display_id_4630947033261136259.xml",
+      "source": "official_peridot_stock",
+      "evidence": "byte-identical in Mundo reference",
+      "status": "strong_candidate"
+    },
+    {
+      "path": "/product/etc/displayconfig/display_id_4630947195234848131.xml",
+      "source": "official_peridot_stock",
+      "evidence": "byte-identical in Mundo reference",
+      "status": "strong_candidate"
+    },
+    {
+      "path": "/product/etc/displayconfig/thermal_brightness_control.xml",
+      "source": "official_peridot_stock",
+      "evidence": "byte-identical in Mundo reference",
+      "status": "strong_candidate"
+    }
+  ],
+  "targeted_patch_candidates": [
+    {
+      "component": "odm vibrator service",
+      "files": [
+        "/odm/bin/hw/vendor.xiaomi.hardware.vibratorfeature.service",
+        "/odm/etc/vintf/manifest/vendor.xiaomi.hardware.vibratorfeature.service.xml"
+      ],
+      "observed_change": "service instance /vibratorfeature -> /default; binary differs by only 15 bytes",
+      "status": "candidate_runtime_compatibility_patch",
+      "apply_by_default": false,
+      "validation_required": [
+        "boot",
+        "vibrator",
+        "haptics",
+        "VINTF/service registration"
+      ]
+    }
+  ],
+  "rejected_from_clean_baseline": [
+    {
+      "change": "remove fileencryption and metadata_encryption from fstab.qcom",
+      "reason": "direct cause of reference ROM DECRYPT behavior"
+    },
+    {
+      "change": "remove AVB flags from fstab.qcom",
+      "reason": "reference-port workaround; not established as required"
+    },
+    {
+      "change": "collapse mi_ext into system/product",
+      "reason": "reference-port space/layout strategy; clean EROFS budget will solve size separately"
+    },
+    {
+      "change": "convert system/system_ext/mi_ext to EXT4",
+      "reason": "inflates super usage and is not established as required"
+    },
+    {
+      "change": "ro.control_privapp_permissions=disable or empty",
+      "reason": "weakens permission enforcement and is not required by current evidence"
+    },
+    {
+      "change": "persist.sys.kaorios=kousei and Kaorios framework/service modifications",
+      "reason": "optional mod layer, not hardware compatibility"
+    },
+    {
+      "change": "fake locked/green verified boot properties",
+      "reason": "optional spoofing layer, not port compatibility"
+    },
+    {
+      "change": "HyperRepack thermal/performance/LMK/DNS tweaks",
+      "reason": "optional tuning layer, not port compatibility"
+    },
+    {
+      "change": "add 90 Hz to product/etc/device_features/peridot.xml",
+      "reason": "Mundo-only tweak relative to official peridot stock; not required for baseline"
+    }
+  ],
+  "unresolved": [
+    "semantic purpose of Mundo services.jar/classes3.dex delta",
+    "provenance/necessity of Mundo NQNfcNci package",
+    "provenance/necessity of Mundo MIUIScreenRecorder package",
+    "exact provenance of Mundo boot/dtbo/vendor_boot/recovery/modem/modemfirmware mixed hardware images",
+    "minimum safe donor product removals needed to recover 945872896 bytes"
+  ]
+}

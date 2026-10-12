@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "id": "peridot-global-mi-ext-target-declarations-v0",
+  "partition": "mi_ext",
+  "path": "/etc/build.prop",
+  "donor_archive_sha256": "b6bc69ddddc7750a4e453c514fd945ca22d166c5ab0704d955b0e6ab81ac5dbd",
+  "stock_archive_sha256": "13958bfdfcbaf72709302b6d4806a39e55ed9bd72e23d5a53dbf5606c52340b5",
+  "source_file_sha256": "8e47721db4eb1796d8c100fcca7c367a473a9adbddb12b8b364d9d03e07ecc04",
+  "target_baseline_file_sha256": "aac4120634aacb8e0a8c6e3fae55433d520eb1c6273e9b236dcbf9a998a35119",
+  "expected_output_sha256": "970492c022d25b490281cd27263fadd791fe94113e595daeb43189cf3731ffe9",
+  "operations": [
+    {
+      "operation": "set",
+      "key": "ro.product.mod_device",
+      "old_value": "pudding_global",
+      "value": "peridot_global",
+      "reason": "Exact F6 Global target identity; source OS4 version metadata remains donor-derived."
+    },
+    {
+      "operation": "remove",
+      "key": "ro.vendor.build.ab_ota_partitions",
+      "old_value": "abl,aop,aop_config,bluetooth,boot,countrycode,cpucp,cpucp_dtb,dcp,devcfg,dsp,dtbo,featenabler,hyp,hyp_ac_config,idmanager,imagefv,init_boot,keymaster,modem,modemfirmware,multiimgqti,odm,pdp,pdp_cdb,product,pvmfw,qtvm_dtbo,qupfw,recovery,secretkeeper,shrm,soccp,soccp_dcd,soccp_debug,spuservice,system,system_dlkm,system_ext,tme_config,tme_fw,tme_seq_patch,tz,tz_ac_config,tz_qti_config,uefi,uefisecapp,vbmeta,vbmeta_system,vendor,vendor_boot,vendor_dlkm,vm-bootsys,xbl,xbl_ac_config,xbl_config,xbl_ramdump,mi_product,mi_ext",
+      "reason": "Donor-only OTA/hardware declaration absent from inspected exact F6 Global property sources; restore target absence rather than advertise unsupported donor hardware."
+    },
+    {
+      "operation": "remove",
+      "key": "ro.vendor.miui.support_esim",
+      "old_value": "true",
+      "reason": "Donor-only OTA/hardware declaration absent from inspected exact F6 Global property sources; restore target absence rather than advertise unsupported donor hardware."
+    },
+    {
+      "operation": "remove",
+      "key": "ipa_callback_in_displayfeature",
+      "old_value": "true",
+      "reason": "Donor-only OTA/hardware declaration absent from inspected exact F6 Global property sources; restore target absence rather than advertise unsupported donor hardware."
+    },
+    {
+      "operation": "remove",
+      "key": "vendor.mi_ric.ddr_freq_monitor",
+      "old_value": "true",
+      "reason": "Donor-only OTA/hardware declaration absent from inspected exact F6 Global property sources; restore target absence rather than advertise unsupported donor hardware."
+    },
+    {
+      "operation": "remove",
+      "key": "persist.vendor.camera.gesture.emoji.support",
+      "old_value": "1",
+      "reason": "Donor-only OTA/hardware declaration absent from inspected exact F6 Global property sources; restore target absence rather than advertise unsupported donor hardware."
+    },
+    {
+      "operation": "remove",
+      "key": "ro.config.WlanAntTunerPolicy",
+      "old_value": "3",
+      "reason": "Donor-only OTA/hardware declaration absent from inspected exact F6 Global property sources; restore target absence rather than advertise unsupported donor hardware."
+    },
+    {
+      "operation": "remove",
+      "key": "ro.audio.audiozoom",
+      "old_value": "true",
+      "reason": "Donor-only OTA/hardware declaration absent from inspected exact F6 Global property sources; restore target absence rather than advertise unsupported donor hardware."
+    },
+    {
+      "operation": "remove",
+      "key": "ro.audio.ozo.channelmask.in",
+      "old_value": "true",
+      "reason": "Donor-only OTA/hardware declaration absent from inspected exact F6 Global property sources; restore target absence rather than advertise unsupported donor hardware."
+    }
+  ],
+  "all_other_lines_preserved": true,
+  "baseline_absence_scan": [
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/mi_ext/etc/build.prop",
+      "sha256": "aac4120634aacb8e0a8c6e3fae55433d520eb1c6273e9b236dcbf9a998a35119"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/build.prop",
+      "sha256": "d8d17d2be2448e454e40cc5c241538bbf9ea89de577416585a26f990635c6f30"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_8.1.6.prop",
+      "sha256": "aa0205f0b57cf9f9b0bf70408d8590c463055f6bbcf2d6035f2a0412e5ef16c1"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_8.2.6.prop",
+      "sha256": "aa0205f0b57cf9f9b0bf70408d8590c463055f6bbcf2d6035f2a0412e5ef16c1"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_8.21.0.prop",
+      "sha256": "95e9902d17124e1a55079ffab6ce47d8b55c9b5530c25d1f1b3f27fc42a9a74f"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_8.21.1.prop",
+      "sha256": "95e9902d17124e1a55079ffab6ce47d8b55c9b5530c25d1f1b3f27fc42a9a74f"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_8.22.0.prop",
+      "sha256": "95e9902d17124e1a55079ffab6ce47d8b55c9b5530c25d1f1b3f27fc42a9a74f"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_8.22.6.prop",
+      "sha256": "46e1b98fddda6bf87d40b92d0047ce19539e800d42838299cfefb8e873bad6cf"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_8.29.0.prop",
+      "sha256": "95e9902d17124e1a55079ffab6ce47d8b55c9b5530c25d1f1b3f27fc42a9a74f"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_8.29.6.prop",
+      "sha256": "46e1b98fddda6bf87d40b92d0047ce19539e800d42838299cfefb8e873bad6cf"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_8.9.6.prop",
+      "sha256": "aa0205f0b57cf9f9b0bf70408d8590c463055f6bbcf2d6035f2a0412e5ef16c1"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/odm/etc/peridot_in_build.prop",
+      "sha256": "a253d64f9eb51045d4fd811d572cdf50d95fc2e935ef45cb7db89b3be4730e8c"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/product/etc/build.prop",
+      "sha256": "0b8cb08532662143eddb3da0e323e2acad61599c1418e9b030b9658a620b1b87"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/vendor/build.prop",
+      "sha256": "6dd848c66c456837ec3b9a771c435ad433b769746423217cf51fe1365ba4e45e"
+    },
+    {
+      "file": "/workspace/shared/peridot-global-base/selected_files/vendor/odm_dlkm/etc/build.prop",
+      "sha256": "7f4f7f6c81b54f1cdef460909b15da554ba19cf4f4afbac814bf078d7f1cb80d"
+    }
+  ],
+  "explicit_preserved": {
+    "ro.thermal.iec.enable": "true",
+    "ro.miui.build.region": "global",
+    "ro.mi.os.version.name": "OS4.0",
+    "ro.build.version.incremental": "OS4.0.0.9.XPCMIXM"
+  },
+  "provenance_status": "Source hashes and absent target declarations directly observed. Runtime defaults and persisted-property values not proven.",
+  "property_load_evidence": {
+    "init_sha256": "9bb24ead728c13c50a5c734e6b3f951c83c7a81d86e2f973b1a1bd4fa9cab020",
+    "observed_order": "vendor/ODM/product are read before optional mi_product; optional mi_ext is read later into same property collection, before its private/build.prop and final set iteration.",
+    "mi_ext_R_OK_access_address": "0x1004cc",
+    "mi_ext_loader_call_address": "0x1004e8",
+    "scope": "Static load-call order. Individual defaults, protected-key override filtering, property service publication and persisted data still require full-runtime validation."
+  },
+  "security": "No AVB, encryption, attestation, ro.secure/ro.debuggable, SELinux or integrity controls are changed.",
+  "release_gates": [
+    "Verify no later private/build.prop reintroduces replaced donor declarations",
+    "Verify final property values and actual hardware capabilities on device only when separately authorized",
+    "Maintain manual-offline-only custom update policy; deleting an OTA property is not universal update prevention"
+  ]
+}

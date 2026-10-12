@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "status": "recommended_narrow_static_compatibility_policy_not_applied",
+  "scope": "Offline file-content proposal for exact peridot Global OS3.0.303 base and exact pudding Global OS4.0.0.9 donor; no device execution",
+  "base_archive_sha256": "13958bfdfcbaf72709302b6d4806a39e55ed9bd72e23d5a53dbf5606c52340b5",
+  "donor_archive_sha256": "b6bc69ddddc7750a4e453c514fd945ca22d166c5ab0704d955b0e6ab81ac5dbd",
+  "source_file": {
+    "path": "/workspace/shared/peridot-global-base/selected_files/mi_ext/product/etc/cust_features/device_features.xml",
+    "sha256": "fcf5cb00fbd9bb840b1e9c3f414bbce7210433ca2dd87b7b82982855139597b5",
+    "size": 1306,
+    "metadata": {
+      "nid": 1769429,
+      "mode": 33188,
+      "size": 1306,
+      "addr": 4294967295,
+      "layout": 2,
+      "inline": 56621776,
+      "path": "/product/etc/cust_features/device_features.xml",
+      "uid": 0,
+      "gid": 0,
+      "permissions_octal": "0o644",
+      "inode_format": 4,
+      "saved": "/workspace/shared/peridot-global-base/selected_files/mi_ext/product/etc/cust_features/device_features.xml",
+      "sha256": "fcf5cb00fbd9bb840b1e9c3f414bbce7210433ca2dd87b7b82982855139597b5",
+      "source_operation_hashes_verified": true,
+      "xattrs": [
+        {
+          "name": "security.selinux",
+          "value_hex": "753a6f626a6563745f723a73797374656d5f66696c653a7330",
+          "value_text": "u:object_r:system_file:s0",
+          "storage": "shared",
+          "shared_id": 288
+        }
+      ]
+    }
+  },
+  "target_file": {
+    "partition": "mi_ext",
+    "path": "/product/etc/cust_features/device_features.xml",
+    "local_input": "/workspace/shared/peridot-global-assembly/mi-ext-work/mi_ext/product/etc/cust_features/device_features.xml",
+    "expected_sha256": "35d0e787e5420fad943cd91d8ee2955d8f8670d0181cffb0ec854219ea0cf071",
+    "expected_size": 5032,
+    "metadata_preserve": {
+      "path": "/product/etc/cust_features/device_features.xml",
+      "nid": 10623102,
+      "mode": 33188,
+      "uid": 0,
+      "gid": 0,
+      "size": 5032,
+      "addr": 1,
+      "layout": 3,
+      "inline": 339939312,
+      "xattrs": {
+        "security.selinux": "753a6f626a6563745f723a73797374656d5f66696c653a7330"
+      }
+    }
+  },
+  "changes": [
+    {
+      "op": "remove",
+      "type": "bool",
+      "name": "device_on_platform_8850",
+      "expected_donor_value": "true",
+      "stock_state": "absent",
+      "basis": "Exact stock absence plus TelephonyManagerEx.isPlatform8850() false-default lookup"
+    },
+    {
+      "op": "add",
+      "type": "bool",
+      "name": "device_on_platform_8635",
+      "expected_donor_state": "absent",
+      "value": "true",
+      "basis": "Exact stock value plus TelephonyManagerEx.isPlatform8635() false-default lookup"
+    },
+    {
+      "op": "add",
+      "type": "bool",
+      "name": "cust_feature_legacy_device_8550_8635_8650",
+      "expected_donor_state": "absent",
+      "value": "true",
+      "basis": "Exact stock value; ModemTelephonyLegacy.make() activates ModemSarController_8550 and CheckNrThermalService"
+    },
+    {
+      "op": "add",
+      "type": "bool",
+      "name": "cust_feature_legacy_device_8635",
+      "expected_donor_state": "absent",
+      "value": "true",
+      "basis": "Exact stock hardware selector; no direct consumer found in inspected donor DEX coverage"
+    },
+    {
+      "op": "add",
+      "type": "bool",
+      "name": "patern2_device",
+      "expected_donor_state": "absent",
+      "value": "true",
+      "basis": "Exact stock hardware selector; no direct consumer found in inspected donor DEX coverage"
+    },
+    {
+      "op": "replace_text",
+      "type": "integer",
+      "name": "config_wifi_sar_pattern",
+      "expected_donor_value": "10",
+      "value": "8",
+      "basis": "Exact stock SAR selector; miui-wifi-service and qti-telephony-common WifiSarController constructors consume it"
+    }
+  ],
+  "preserve": {
+    "all_other_xml_nodes_byte_or_semantic_equivalent": true,
+    "cust_features_xml_and_all_regions_and_operator_files": "unchanged",
+    "all_thermal_keys": "unchanged pending consumer evidence; do not claim physical safety",
+    "turbosched_check_is_special_topology": "keep both common and device copies until affinity/core mapping checked",
+    "all_other_donor_software": "unchanged"
+  },
+  "validation_requirements": [
+    "Fail closed if input hashes or expected old node count/value mismatch",
+    "Exactly one root cust_features/cust_feature block and no duplicate changed names",
+    "Output name map must differ by only six specified edits: four adds, one removal, one scalar replacement",
+    "All other XML nodes and attributes must remain semantically identical; preferably preserve formatting by exact element replacement",
+    "Preserve target UID/GID 0:0,0644 and security.selinux u:object_r:system_file:s0 bytes from target metadata",
+    "After image rebuild, extract this file and verify planned output hash and metadata",
+    "This is static configuration alignment, not a boot/thermal/RF certification"
+  ],
+  "unresolved": [
+    "Five donor thermal flags have no exact literal consumer in inspected donor APK/framework/native assets or three stock vendor native samples; omission from scan does not prove unused",
+    "Donor-only haptic BCL,audiozoom_device_type,charging,touch,RF boost,FFU/eSIM and other hardware-adjacent gates remain unchanged by this narrow policy; compatibility is not established",
+    "Donor common cust_features.xml still contains device-affecting features; do not describe this narrow patch as a complete device-feature transplant"
+  ]
+}

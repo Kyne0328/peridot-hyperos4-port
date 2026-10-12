@@ -1,0 +1,93 @@
+{
+  "version": 1,
+  "status": "conditional_separate_amendment_not_applied",
+  "changes": [
+    {
+      "path": "/product/etc/cust_features/device_features.xml",
+      "expected_original_donor_sha256": "35d0e787e5420fad943cd91d8ee2955d8f8670d0181cffb0ec854219ea0cf071",
+      "also_accepted_sequential_preimage_sha256": "3f8fee6bf6768f87ae065fb34dc8861f3ba45f3573a3b5d3b18d8f9beb5ce8e2",
+      "operation": "remove exactly one bool element",
+      "name": "turbosched_check_is_special_topology",
+      "expected_value": "true",
+      "stock_state": "absent",
+      "preserve_metadata": {
+        "path": "/product/etc/cust_features/device_features.xml",
+        "nid": 10623102,
+        "mode": 33188,
+        "uid": 0,
+        "gid": 0,
+        "size": 5032,
+        "addr": 1,
+        "layout": 3,
+        "inline": 339939312,
+        "xattrs": {
+          "security.selinux": "753a6f626a6563745f723a73797374656d5f66696c653a7330"
+        }
+      }
+    },
+    {
+      "path": "/product/etc/cust_features/cust_features.xml",
+      "expected_original_donor_sha256": "6c5c3731d2708d7458cf10a05da562bf9d6f1081567e8594e89f598e63f544ad",
+      "also_accepted_sequential_preimage_sha256": null,
+      "operation": "remove exactly one bool element",
+      "name": "turbosched_check_is_special_topology",
+      "expected_value": "true",
+      "stock_state": "absent",
+      "preserve_metadata": {
+        "path": "/product/etc/cust_features/cust_features.xml",
+        "nid": 11504253,
+        "mode": 33188,
+        "uid": 0,
+        "gid": 0,
+        "size": 37082,
+        "addr": 3,
+        "layout": 3,
+        "inline": 368136144,
+        "xattrs": {
+          "security.selinux": "753a6f626a6563745f723a73797374656d5f66696c653a7330"
+        }
+      }
+    }
+  ],
+  "static_apply_guards": [
+    "The six-edit policy, if used, must pass all its original guards",
+    "Final product/etc/build.prop contains exactly one persist.sys.miui_animator_sched.big_prime_cores=3-7, or an explicitly documented absence with donor default verified as [3,4,5,6,7]",
+    "No later-loaded property or init assignment overrides the core list with different indices",
+    "Check both duplicated XML nodes; deleting only device_features.xml is ineffective because common cust_features.xml wins",
+    "Exact retained F6 vendor targetconfig.xml core mapping and source property are unchanged"
+  ],
+  "runtime_claim_gates": [
+    "Persisted property values in existing userdata can supersede packaged persist.* defaults; read the actual runtime core-list property before claiming runtime correctness",
+    "Confirm CPU indices3-7 represent stock big/prime cores and no runtime cloud/rule update changed mCoreSchedRule; offline analysis cannot establish runtime state"
+  ],
+  "consumer_evidence": {
+    "framework_sha256": "172e40cf00c554d6c7aaacf8377117f4c2960b3f1654f8164805803a74007c0f",
+    "class": "Lmiui/turbosched/TurboSchedMonitorImpl;",
+    "constructor": "getBoolean(key,false)\u2192mNeedNotSetAffinityDevice",
+    "use": "setDynamicVIPTaskWithTid: if mNeedNotSetAffinityDevice is true, skip schedSetAffinity and releaseAffinityByTimeout; false permits them if p3=true",
+    "default_big_cores": [
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "property_override": "tryGetAffinityMethod parses mCoreSchedRule when non-default and assigns BIG_CORES",
+    "code_evidence": "platform-consumer-code.json"
+  },
+  "stock_evidence": [
+    {
+      "path": "/workspace/shared/peridot-global-base/selected_files/product/etc/build.prop",
+      "sha256": "0b8cb08532662143eddb3da0e323e2acad61599c1418e9b030b9658a620b1b87",
+      "line": 205,
+      "content": "persist.sys.miui_animator_sched.big_prime_cores=3-7"
+    },
+    {
+      "path": "/workspace/shared/peridot-global-base/selected_files/vendor/etc/perf/targetconfig.xml",
+      "sha256": "3f01b82209018139429f2ed336b4d21e010d1ff1f95e99232a7372fecb3c4f1b",
+      "config": "Config2 cliffs: 3 little,4 big,1 prime; CoreCtlCpu3"
+    }
+  ],
+  "delta": "Restores stock-absent/false selector behavior, enabling stock-consistent affinity pinning instead of donor skip-affinity behavior; does not edit temperature/thermal thresholds or thermal policy files",
+  "limits": "Static core-index consistency is established. This is not a runtime scheduler performance/stability certification."
+}

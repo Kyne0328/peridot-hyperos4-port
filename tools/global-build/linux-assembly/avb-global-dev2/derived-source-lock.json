@@ -1,0 +1,41 @@
+{
+  "system_source_sha256": "88142dce1788b9e105ebbc97b1945c0071fb840f827545a57c213b2e6298c32d",
+  "source_map": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global-dev2/dev1-explicit-map.json",
+    "size": 5687,
+    "sha256": "78c63421760aaae5da2e7dc2bfbce9d4221352a1a51f8e3669f86b78bdf08f5c"
+  },
+  "source_inventory": {
+    "path": "/workspace/shared/peridot-global-assembly/system-dev2/source-expected.json",
+    "size": 1568349,
+    "sha256": "f4a51c050a712cb277fad170079d7412571080903c290330f2c326d599da7ac0"
+  },
+  "files": {
+    "/system/etc/selinux/plat_sepolicy.cil": {
+      "size": 3301542,
+      "sha256": "96320f4ed4f982adb0e69cf3e61a92d2677f8fc357123f2f2e3d43daa9aaff45"
+    },
+    "/system/etc/selinux/mapping/202604.cil": {
+      "size": 234473,
+      "sha256": "8a77140eef4b608a32339f2ae4bc0dd539bac291daf1a60f3c614a2956c85b1d",
+      "captured": {
+        "path": "/workspace/shared/peridot-global-assembly/avb-global-dev2/captured-derived-source/mapping-202604.cil",
+        "size": 234473,
+        "sha256": "8a77140eef4b608a32339f2ae4bc0dd539bac291daf1a60f3c614a2956c85b1d"
+      }
+    },
+    "/system/etc/selinux/plat_sepolicy_and_mapping.sha256": {
+      "size": 65,
+      "sha256": "32b3814bd1d4ec447215bb5e16b1c88f14159843008169ac8696d5ceaee31cf1",
+      "captured": {
+        "path": "/workspace/shared/peridot-global-assembly/avb-global-dev2/captured-derived-source/original-plat-digest.sha256",
+        "size": 65,
+        "sha256": "32b3814bd1d4ec447215bb5e16b1c88f14159843008169ac8696d5ceaee31cf1"
+      }
+    }
+  },
+  "original_digest_recomputed": true,
+  "original_digest_text": "dbff648f8babb31b9a65e96fdd903beff251b0fd1635cca48a97ac6d1b5510f9\n",
+  "format": "64 lowercase ASCII hexadecimal characters and exactly one LF",
+  "no_large_image_extraction": true
+}

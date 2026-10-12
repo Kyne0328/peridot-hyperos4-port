@@ -1,0 +1,15 @@
+F6 GLOBAL HYPEROS4 DEV2-RI2 — SINGLE-ZIP RECOVERY INSTALL CANDIDATE
+
+Unchanged DEV2 images. Offline packaging candidate, NOT device-tested or a production release. Do not relock. Existing strict-policy diagnostic has 77 residual assertions; normal policy compile previously passed. Actual boot, hardware, wrapped-key creation, credential unlock, recovery decryption and development AVB-key acceptance remain unverified.
+
+One ZIP contains all payloads. No external payload companions. Select this ZIP from external USB-OTG storage in the exact supplied OrangeFox R12.0_202610011528 crypto recovery. External filesystem must support files over 4 GiB (FAT32 is unsuitable) and recovery must expose it as a removable block-backed mount under /usb_otg, /external_sd or /mnt/media_rw. ADB sideload and internal-storage installation are unsupported. Verify whole ZIP SHA-256 on a computer first.
+
+This is ZIP64 with sector-aligned stored chunks. Installer reads pinned byte ranges with recovery BusyBox dd rather than relying on BusyBox unzip ZIP64. All payload ranges are hashed before writes and each staged write is verified by device readback. Recovery ZIP64 launcher and large-offset dd execution have not been tested on a phone. A failed preflight must be investigated, never bypassed.
+
+Prerequisites: POCO F6/peridot, already unlocked bootloader, current AND selected slot A, two slots; exact OS3.0.303.0.WNPMIXM slot-A firmware; exact 9,126,805,504-byte super; known NONE snapshot merge state; correct mounted readable metadata with no OTA state; no device-mapper devices, swap, mounted userdata or logical partitions; at least 384 MiB free /tmp staging. Do not automatically delete snapshots or mappings to defeat checks. Backups and a proven restoration method are essential.
+
+Installer replaces shared super then slot-A boot, dtbo, init_boot, vendor_boot, STOCK recovery, vbmeta_system and vbmeta. Firmware is verified but not written. Slot B logical contents in super are empty, so B is not an old-ROM rollback. Installation is not atomic. The ZIP does not format userdata/metadata, erase keys, modify encryption/verity flags, unlock/relock, change slots, or reboot.
+
+Clean installation is the only intended test workflow; existing data migration is unvalidated. Clean-data initialization with encryption retained and future recovery access require separately verified procedures. The ZIP does not provide or certify those procedures. Disable recovery automatic root, verity and forced-encryption patch options before any authorized test. Stock recovery replaces OrangeFox on A because supplied OrangeFox is unsigned and does not satisfy the retained stock recovery chain. Recovery access itself remains a device validation gate.
+
+If a write fails, do not boot system or assume slot B can roll back. Save recovery logs and use a separately established restoration procedure. Successful offline validation does not establish safe device boot or power-loss recovery.

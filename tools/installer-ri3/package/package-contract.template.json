@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "contract_status": "draft-unresolved-never-release",
+  "production_emission_enabled": false,
+  "original_super": {
+    "source_path": ".cache/global-single-recovery-ri2/source-images/images/super.img",
+    "size": 9126805504,
+    "sha256": "04842fd6988f96e6e9784adab37d71ec1602ffe35a966f7043658fb84feefd9b",
+    "raw_size": 9126805504,
+    "raw_sha256": "04842fd6988f96e6e9784adab37d71ec1602ffe35a966f7043658fb84feefd9b"
+  },
+  "source_manifests": {
+    "source_images": {
+      "path": ".cache/global-single-recovery-ri2/source-images/MANIFEST.json",
+      "sha256": "bc5f9e4f415e2910667aae20935e3130a1bfa99acb46c1131c170b31a325c38b"
+    },
+    "original_package": {
+      "path": ".cache/global-single-recovery-ri2/reports/single-package-manifest.json",
+      "sha256": "d296c0ed71c50f4ddd10b876425220e9cd5a3d3d2861caf5418ae31a33d67c46"
+    }
+  },
+  "members": [
+    {
+      "role": "updater",
+      "zip_path": "META-INF/com/google/android/update-binary",
+      "source_path": "PENDING/source-built-arm64-update-binary",
+      "size": null,
+      "sha256": null
+    },
+    {
+      "role": "edify",
+      "zip_path": "META-INF/com/google/android/updater-script",
+      "source_path": "PENDING/reviewed-real-edify",
+      "size": null,
+      "sha256": null
+    },
+    {
+      "role": "super",
+      "zip_path": "images/super.img",
+      "source_path": "PENDING/generated-complete-sparse-stream",
+      "size": 8912997308,
+      "sha256": null,
+      "raw_size": 9126805504,
+      "raw_sha256": "04842fd6988f96e6e9784adab37d71ec1602ffe35a966f7043658fb84feefd9b",
+      "encoded_size": 8912997308,
+      "encoded_sha256": null,
+      "zip_file_size_means": "encoded sparse byte count, never raw expanded image byte count",
+      "encoding": "android_sparse_v1_raw_zero_fill_crc"
+    },
+    {
+      "role": "recovery",
+      "zip_path": "images/recovery.img",
+      "source_path": "PENDING/matching-signed-recovery.img",
+      "size": null,
+      "sha256": null
+    },
+    {
+      "role": "vbmeta",
+      "zip_path": "images/vbmeta.img",
+      "source_path": "PENDING/matching-vbmeta.img",
+      "size": null,
+      "sha256": null
+    }
+  ],
+  "unresolved_gates": [
+    "Source-built ARM64 updater and reviewed real Edify pins",
+    "Matching signed recovery/vbmeta attestation",
+    "All unchanged image members/pins and write policy from original manifest",
+    "Read-only raw analyze pass and >4 GiB ZIP64 native-reader validation",
+    "Reviewed direct-to-ZIP production wrapper with live 11 GiB reserve",
+    "Final package/signature validation"
+  ],
+  "note": "Deliberately incomplete example: plan_contract rejects placeholders. Do not replace missing pins with invented values. Generated sparse entry is streamed from unchanged original_super only after planning/hash verification; final sparse hash belongs in the verified package receipt.",
+  "authorized_image_changes": {
+    "unchanged_count": 30,
+    "replace_only": [
+      "images/recovery.img",
+      "images/vbmeta.img"
+    ],
+    "preserve_raw_super": true,
+    "source_manifest_role": "immutable source evidence only",
+    "derived_manifest_required": true
+  },
+  "member_size_semantics": "Legacy members.size aliases encoded_size; original_super.size aliases raw_size. Super raw and encoded identities must both be pinned independently."
+}

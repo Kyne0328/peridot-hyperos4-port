@@ -1,0 +1,6 @@
+id=kyneos_apexd_fiemap_fix
+name=KyneOS APEX Update Fix (DECRYPT)
+version=1.0.0
+versionCode=1
+author=KyneOS
+description=Correct Android 17 pinned-FIEMAP APEX update failure on decrypted POCO F6. No integrity or signature checks disabled.

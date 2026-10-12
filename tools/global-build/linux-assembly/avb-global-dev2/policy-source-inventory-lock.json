@@ -1,0 +1,12 @@
+{
+  "vendor": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global-dev2/locked-source-inventories/vendor.json",
+    "size": 1232303,
+    "sha256": "4790f46c46af37cd1999829944d5c4cd391ef16faef428e9265fb0e1355c73d3"
+  },
+  "system": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global-dev2/locked-source-inventories/system.json",
+    "size": 1568349,
+    "sha256": "f4a51c050a712cb277fad170079d7412571080903c290330f2c326d599da7ac0"
+  }
+}

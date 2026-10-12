@@ -1,0 +1,3 @@
+# UPDATE-001: direct-mounted decrypted userdata conflicts with pinned FIEMAP APEX dm mappings.
+# Use the normal APEX image path. Signature/verity validation remains active.
+apexd.config.use_fiemap=false

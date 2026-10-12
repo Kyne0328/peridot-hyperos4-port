@@ -1,0 +1,8 @@
+{
+  "repository": "platform/system/libbase",
+  "commit": "5290a0114274c48b4b6a12bbf7e6e88a84b1438c",
+  "path": "builder\\work\\installer-ri3-native\\production-vendor\\base\\mapped_file.cpp",
+  "url": "https://android.googlesource.com/platform/system/libbase/+/5290a0114274c48b4b6a12bbf7e6e88a84b1438c/mapped_file.cpp?format=TEXT",
+  "sha256": "50daaa1826752ca1d5c2fcde166a597e38b624348f549d1914ac2149ff2dcd05",
+  "bytes": 3986
+}

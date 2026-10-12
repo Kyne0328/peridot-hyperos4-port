@@ -1,0 +1,226 @@
+{
+  "scope": "Read-only review of exact verified Global input artifacts; no phone actions, source image edits, flashing or ROM application performed.",
+  "base_archive_sha256": "13958bfdfcbaf72709302b6d4806a39e55ed9bd72e23d5a53dbf5606c52340b5",
+  "donor_archive_sha256": "b6bc69ddddc7750a4e453c514fd945ca22d166c5ab0704d955b0e6ab81ac5dbd",
+  "operations": [
+    {
+      "operation": "add_file",
+      "target_product_relative_path": "etc/device_features/peridot.xml",
+      "source_path": "/workspace/shared/peridot-global-base/selected_files/product/etc/device_features/peridot.xml",
+      "source_sha256": "a0c28d49771932bb47396954caa08d39d0b66cb3a95c9e01167501e3e2f03eba",
+      "old_sha256": null,
+      "metadata": {
+        "uid": 0,
+        "gid": 0,
+        "mode_octal": "0o644",
+        "security.selinux": "u:object_r:system_file:s0",
+        "template_path": "/etc/device_features/pudding.xml"
+      },
+      "review_status": "supported_static_target_declaration",
+      "reason": "FeatureParser selects device-named XML from product after mi_ext/opcust directories. F6 ODM property source order names peridot. Full source hardware declarations retained."
+    },
+    {
+      "operation": "add_file",
+      "target_product_relative_path": "etc/displayconfig/display_id_4630946545580055171.xml",
+      "source_path": "/workspace/shared/peridot-global-base/selected_files/product/etc/displayconfig/display_id_4630946545580055171.xml",
+      "source_sha256": "92907ab3620fa7caf3be093ea9d32de38c9d2d53ac7dc0f4faae280071307e3d",
+      "old_sha256": null,
+      "metadata": {
+        "uid": 0,
+        "gid": 0,
+        "mode_octal": "0o644",
+        "security.selinux": "u:object_r:system_file:s0",
+        "template_path": "/etc/displayconfig/display_id_4630946555188253075.xml"
+      },
+      "review_status": "supported_static_target_calibration",
+      "reason": "Adds exact F6 panel ID and2400nit maximum mapping/HBM5882lux. Must verify actual hardware selected displayID at runtime."
+    },
+    {
+      "operation": "add_file",
+      "target_product_relative_path": "etc/displayconfig/display_id_4630947033261136259.xml",
+      "source_path": "/workspace/shared/peridot-global-base/selected_files/product/etc/displayconfig/display_id_4630947033261136259.xml",
+      "source_sha256": "92907ab3620fa7caf3be093ea9d32de38c9d2d53ac7dc0f4faae280071307e3d",
+      "old_sha256": null,
+      "metadata": {
+        "uid": 0,
+        "gid": 0,
+        "mode_octal": "0o644",
+        "security.selinux": "u:object_r:system_file:s0",
+        "template_path": "/etc/displayconfig/display_id_4630946555188253075.xml"
+      },
+      "review_status": "supported_static_target_calibration",
+      "reason": "Adds exact F6 panel ID and2400nit maximum mapping/HBM5882lux. Must verify actual hardware selected displayID at runtime."
+    },
+    {
+      "operation": "add_file",
+      "target_product_relative_path": "etc/displayconfig/display_id_4630947195234848131.xml",
+      "source_path": "/workspace/shared/peridot-global-base/selected_files/product/etc/displayconfig/display_id_4630947195234848131.xml",
+      "source_sha256": "92907ab3620fa7caf3be093ea9d32de38c9d2d53ac7dc0f4faae280071307e3d",
+      "old_sha256": null,
+      "metadata": {
+        "uid": 0,
+        "gid": 0,
+        "mode_octal": "0o644",
+        "security.selinux": "u:object_r:system_file:s0",
+        "template_path": "/etc/displayconfig/display_id_4630946555188253075.xml"
+      },
+      "review_status": "supported_static_target_calibration",
+      "reason": "Adds exact F6 panel ID and2400nit maximum mapping/HBM5882lux. Must verify actual hardware selected displayID at runtime."
+    },
+    {
+      "operation": "replace_file",
+      "target_product_relative_path": "etc/displayconfig/multi_factor_thermal_brightness_control.xml",
+      "source_path": "/workspace/shared/peridot-global-builder/review-product/proposed_multi_factor_thermal_brightness_control.xml",
+      "source_sha256": "2fb22baf874e85e6e0cde5790c8a83713e987b926038002c4fcf4daa5036ed21",
+      "old_sha256": "7d134da492b36d118f9f429fe595dc1054958d880d6c67edb40a531aac304c73",
+      "metadata": {
+        "uid": 0,
+        "gid": 0,
+        "mode_octal": "0o644",
+        "security.selinux": "u:object_r:system_file:s0",
+        "template_path": "/etc/displayconfig/multi_factor_thermal_brightness_control.xml"
+      },
+      "review_status": "supported_schema_conversion_not_runtime_validation",
+      "reason": "Pinned donor only parses nested lux schema; preserves all6 F6 condition tables and adds stock common -3NTC without changing values.1727 comparisons pass."
+    },
+    {
+      "operation": "replace_file",
+      "target_product_relative_path": "overlay/MiuiFrameworkResOverlay.apk",
+      "source_path": "/workspace/shared/peridot-global-base/selected_files/product/overlay/MiuiFrameworkResOverlay.apk",
+      "source_sha256": "d9837e85f6d3bf75917c4334ae9c5ab7f90edaa541ae9c47d3337139c63f71b3",
+      "old_sha256": "498b789ee6014ea523ee25967acdc6601bd40810f37ce6d18cbd49626e937ce4",
+      "metadata": {
+        "uid": 0,
+        "gid": 0,
+        "mode_octal": "0o644",
+        "security.selinux": "u:object_r:system_file:s0",
+        "template_path": "/overlay/MiuiFrameworkResOverlay.apk"
+      },
+      "review_status": "supported_stock_hardware_overlay_with_idmap_runtime_gate",
+      "reason": "Stock F6 signed data-only RRO restores F6 OPR curve and main thermal=true. Same overlay identity,target,priority and signer certificate; olderSDK compatible. Runtime resource/idmap acceptance not exercised."
+    },
+    {
+      "operation": "add_file",
+      "target_product_relative_path": "overlay/F6Calibration-DEV-TESTKEY.apk",
+      "unsigned_source": "/workspace/shared/peridot-global-builder/review-product/calibration-only-proposal/F6Calibration-UNSIGNED-REVIEW-ONLY.apk",
+      "unsigned_source_sha256": "0f879ecd4d576a2127177be51acd74de1dd63a2764541e04697a8a07ef7fc904",
+      "package": "org.peridot.port.displaycalibration.dev",
+      "review_status": "SIGNED_DEVELOPMENT_ARTIFACT_NORMAL_POLICY_IDMAP_PASS",
+      "metadata": {
+        "uid": 0,
+        "gid": 0,
+        "mode_octal": "0o644",
+        "security.selinux": "u:object_r:system_file:s0"
+      },
+      "reason": "Contains exactly ten brightness resources and 393 typed values from F6 stock. Actual idmap maps all ten under normal product policy. Merged lookups retain camera and microphone privacy. The existing donor APK is unchanged.",
+      "source_path": "/workspace/shared/peridot-global-assembly/avb-global/calibration-signing/F6Calibration-DEV-TESTKEY.apk",
+      "source_sha256": "e7aeabd02cd53ec14feae8139b8cfac4fa89e3cd65fefe0cb7c2865d1ce727c1",
+      "old_sha256": null,
+      "certificate_sha256": "a40da80a59d170caa950cf15c18c454d47a39b26989d8b640ecd745ba71bf5dc",
+      "signing_scope": "Public AOSP development testkey only. No OEM/platform-signature claim."
+    }
+  ],
+  "suggested_property_edits": [
+    {
+      "key": "ro.product.product.name",
+      "from": "miproduct_pudding",
+      "to": "miproduct_peridot",
+      "source": "/workspace/shared/peridot-global-base/selected_files/product/etc/build.prop",
+      "status": "stock_partition_identity_alignment"
+    },
+    {
+      "key": "ro.sf.lcd_density",
+      "from": "520",
+      "to": "480",
+      "source": "/workspace/shared/peridot-global-base/selected_files/product/etc/build.prop",
+      "status": "stock_display_density"
+    },
+    {
+      "key": "persist.miui.density_v2",
+      "from": "520",
+      "to": "480",
+      "source": "/workspace/shared/peridot-global-base/selected_files/product/etc/build.prop",
+      "status": "stock_display_density"
+    }
+  ],
+  "must_not_blindly_change": [
+    "Retain donor OS4/Android17 framework build and SDK identity; do not overwrite all build.prop with base OS3/Android16.",
+    "Do not assert donor release-keys/fingerprint proves rebuilt integrity or attestation. Preserve immutable original properties as lineage where appropriate; custom image provenance is separate.",
+    "Do not copy all stock properties: stock names such as enable_templimit require semantics review; no blanket thermal or security changes.",
+    "Do not overwrite crypto/FBE, SELinux, AVB, root/anti-root or attestation controls.",
+    "Do not rename the classic thermal file to multifactor without wrapping; parser skips direct temperature children.",
+    "Do not substitute common multifactor alone: it is not F6 per-condition equivalent.",
+    "Do not replace all product overlays: donor DevicesOverlay contains1614 donor-only resource names beyond F6, many newOS UI resources.",
+    "Do not delete donor-specific files merely because they exist; include only reviewed functional mutations."
+  ],
+  "retain_unchanged": {
+    "etc/displayconfig/common_multi_factor_thermal_brightness_control.xml": "a8a0f20094366aa998ccff432370bb95bcffbf7126d6126b82f6fbd09c39e470",
+    "overlay/partition_order.xml": "0f697affbd3a986426426f846de44ef6c7bd0ee2098a27dcb90fcdca9a1a51c9",
+    "overlay/AospFrameworkResOverlay.apk": "80c5f2694bf27c30dfc7dffa51507bf1e12aa1e3950287d59f8b61cbcb25882e"
+  },
+  "remaining_gates": [
+    "Verify effective ro.product.device=peridot and peridot feature-file selection after mi_ext/opcust precedence. Source ODM says property_source_order=odm,vendor,product,system_ext,system.",
+    "Donor mi_ext ro.product.mod_device=pudding_global and ro.vendor.build.ab_ota_partitions includes donor-only firmware/mi_product; product edits alone cannot fix updater identity. Parent is separately reviewing.",
+    "Donor product ro.product.ab_ota_partitions=product,pvmfw does not match stock product-only declaration. Resolve with complete image partition manifest, not by adding donor firmware.",
+    "Donor Bluetooth LE capabilities, CPU masks, media chipset11 versus base8, pwm/display flags, devicequalified mirim policy still require separately reviewed compatibility choices.",
+    "Thermal native/JNI/sysfs/vendor event compatibility, negative/NaN lux, cloud override, IPA feature, actual panelID, RRO application and thermal branch activation remain runtime gates.",
+    "All substitutions are static compatibility work, not proof the image is bootable or safe for flashing."
+  ],
+  "evidence_artifacts": [
+    "consumer-references.json",
+    "overlay-manifests.json",
+    "overlay-resources.json",
+    "thermal-conversion-validation.json",
+    "aosp-overlay-diff.json",
+    "aapt2-overlay-resource-validation.json",
+    "idmap-validation-summary.json",
+    "signed-calibration-validation.json",
+    "PRIVACY_CORRECTION.md",
+    "packaged-overlay-activation.json"
+  ],
+  "reviewed_consumer_jars": {
+    "miui-services.jar": "cbc14c721b13c8c2f92b4b8c247fa054224d4177b5acaf8beed0f5c83285e9b0",
+    "miui-framework.jar": "172e40cf00c554d6c7aaacf8377117f4c2960b3f1654f8164805803a74007c0f"
+  },
+  "old_hash_evidence": "/workspace/shared/peridot-global-assembly/product-metadata/donor-tree-files.json",
+  "overall_status": "Seven scoped changes are supported for the offline development-only composition. The rejected whole F6 AOSP overlay is replaced by the unchanged original donor AOSP overlay plus a narrow, publicly development-signed calibration overlay. Actual normal-policy idmap, merged privacy, typed-value, and exact donor static-activation checks pass. Device runtime remains untested.",
+  "privacy_primary_source": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/master/services/core/java/com/android/server/sensorprivacy/SensorPrivacyService.java",
+  "privacy_confirmation": {
+    "status": "CONFIRMED_IN_EXACT_DONOR",
+    "services_sha256": "242ae9bd14b90961d2aab1b7f12780630112a3fe16394040a546de61d95d544d",
+    "framework_res_sha256": "ba9921e80443710f8b7a208987153172662c685c8ac1f2363d6cbde1f9ae54bb",
+    "systemui_sha256": "37841cfb452f41fe1ba66170ba0878e2952ebbd33c4c3bf4bc1ca3efce1b03e6",
+    "resource": "0x011102b2 bool/config_supportsCamToggle",
+    "consumer_effects": [
+      "Software camera support returns the resource value",
+      "Unsupported software privacy cannot be enabled through the normal setter",
+      "Enabled persisted unsupported software privacy is explicitly reset to false during service initialization",
+      "CameraToggleTile availability requires sensor2 support"
+    ],
+    "hardware_claim": "No evidence establishes lack of F6 software camera privacy capability; hardware camera switch uses separate resource0x011102b4",
+    "evidence": [
+      "donor-services-privacy-overlay.json",
+      "donor-privacy-resource-resolution.json",
+      "donor-systemui-camera-privacy.json"
+    ]
+  },
+  "rejected_operations": [
+    {
+      "operation": "replace_file",
+      "target_product_relative_path": "overlay/AospFrameworkResOverlay.apk",
+      "source_path": "/workspace/shared/peridot-global-base/selected_files/product/overlay/AospFrameworkResOverlay.apk",
+      "source_sha256": "959f0eb55ee85a45e265288eebacfa7351153dc6f651c43eff1bcb2c6cf4022c",
+      "metadata": {
+        "uid": 0,
+        "gid": 0,
+        "mode_octal": "0o644",
+        "security.selinux": "u:object_r:system_file:s0",
+        "template_path": "/overlay/AospFrameworkResOverlay.apk"
+      },
+      "review_status": "HOLD_DO_NOT_APPLY_OR_ACCEPT",
+      "reason": "CONFIRMED exact donor camera software privacy regression: stock F6 resourcefalse vs donortrue prevents enable and can reset persisted camera privacy. Do not apply whole stock AOSP RRO; retain original donor and overlay only brightness calibration under normal policy.",
+      "old_sha256": "80c5f2694bf27c30dfc7dffa51507bf1e12aa1e3950287d59f8b61cbcb25882e"
+    }
+  ],
+  "review_completion": "Review and isolated offline parser validation are complete. The generated product tree may be retired after builder hash readback. Review evidence uses immutable manifests and cached verified inputs."
+}

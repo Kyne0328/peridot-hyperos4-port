@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "device": "peridot",
+  "role": "target_hardware_base",
+  "selected": {
+    "region": "China",
+    "branch": "Stable",
+    "hyperos": "OS3.0.305.0.WNPCNXM",
+    "android": 16,
+    "type": "Recovery",
+    "filename": "peridot-ota_full-OS3.0.305.0.WNPCNXM-user-16.0-f5c2a07bdf.zip",
+    "size_bytes": 7074580588,
+    "md5": "f5c2a07bdf5ff8cd168a439c8379cded",
+    "url": "https://bigota.d.miui.com/OS3.0.305.0.WNPCNXM/peridot-ota_full-OS3.0.305.0.WNPCNXM-user-16.0-f5c2a07bdf.zip",
+    "verified_http_status": 200,
+    "verified_date": "2026-09-30"
+  },
+  "rationale": "Latest indexed China stable peridot full Recovery OTA. Selected as the clean hardware/vendor base; builder profile must still verify codename and payload inventory before use."
+}

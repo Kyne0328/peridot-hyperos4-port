@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "id": "peridot-global-offline-update-policy-v0",
+  "mode": "manual_offline_updates_only",
+  "source_build": "OS4.0.0.9.XPCMIXM",
+  "source_archive_sha256": "b6bc69ddddc7750a4e453c514fd945ca22d166c5ab0704d955b0e6ab81ac5dbd",
+  "source_partition": "product",
+  "source_partition_sha256": "bf69882311326b69f6c76b36a69a50b0044474eaa33ba11356d52532c0305189",
+  "composition_only": true,
+  "mutations": [
+    {
+      "operation": "remove_directory_after_exact_file_hash_checks",
+      "path": "/app/Updater",
+      "package": "com.android.updater",
+      "version_name": "9.7.2",
+      "reason": "Factory donor ROM updates target Xiaomi17; this F6 custom composition has no validated factory OTA channel.",
+      "files": [
+        {
+          "path": "/app/Updater/Updater.apk",
+          "size_bytes": 14736796,
+          "sha256": "73cf027408c00aa0fe09a37c296b6080001ea019d8896b22c2115b51047a416a"
+        },
+        {
+          "path": "/app/Updater/oat/arm64/Updater.odex",
+          "size_bytes": 82776,
+          "sha256": "95277736a19a777e9014584159c9b58d503f5d46692ab20673203588b4e866ef"
+        },
+        {
+          "path": "/app/Updater/oat/arm64/Updater.vdex",
+          "size_bytes": 206552,
+          "sha256": "682ac0cb65caaedd23fad29e981a2286d969a816904787a2a53ac7a8fd40aa20"
+        }
+      ],
+      "metadata_action": "Prune only removed paths from final filesystem metadata; do not retain stale oat entries."
+    }
+  ],
+  "preserve": [
+    "com.google.android.configupdater",
+    "com.xiaomi.discover",
+    "Android update_engine",
+    "AVB verification",
+    "rollback protection",
+    "stock recovery",
+    "FBE and metadata encryption",
+    "stock thermal protection"
+  ],
+  "identity_policy": "Keep honest target/donor source identities; do not spoof locked state, verification state or service eligibility to influence update acceptance.",
+  "verification": {
+    "source_package_identity_verified": true,
+    "source_hashes_recorded": true,
+    "no_composition_mutation_by_this_report": true,
+    "remaining_checks": [
+      "Verify factory updater APK and its oat absent in final product filesystem",
+      "Verify ConfigUpdater and MIUISystemAppUpdater retained byte-identically",
+      "Trace actual property-load precedence for donor mi_ext OTA partition property",
+      "Review Settings behavior when updater target is absent",
+      "Record unsupported official OTA prominently in candidate manifest and user-facing build notes",
+      "Before any phone change, verify recovery route, current custom AOSP details, backups and separately authorized device procedure"
+    ]
+  },
+  "limits": [
+    "Removing this frontend is not proof that every possible privileged installer or manual sideload is blocked.",
+    "Native update mechanisms remain intact for platform lifecycle and recovery; their security checks are not weakened.",
+    "No phone writes or runtime tests are authorized by this policy."
+  ]
+}

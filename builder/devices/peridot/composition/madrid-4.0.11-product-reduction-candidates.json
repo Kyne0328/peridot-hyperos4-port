@@ -1,0 +1,441 @@
+{
+  "schema_version": 2,
+  "basis": "official Madrid OS4.0.11 product EROFS; sizes measured with dump.erofs; package manifests inspected with aapt2; config references scanned; candidates cross-referenced with Mundo removals",
+  "minimum_reduction_bytes": 945872896,
+  "desired_extra_headroom_bytes": 268435456,
+  "target_reduction_bytes": 1214308352,
+  "approved_reduction_bytes": 1243141208,
+  "projected_headroom_after_fit_bytes": 297268312,
+  "meets_minimum": true,
+  "meets_headroom_target": true,
+  "review_status": "approved_for_clean_v0_tree_composition",
+  "policy": [
+    "Remove only explicitly approved optional packages.",
+    "Preserve one normal built-in input method; SogouIME is retained for clean-v0.",
+    "Replace donor madrid.xml with official peridot.xml, so stale Madrid-only device-feature package references are not carried forward.",
+    "Remove privileged-permission blocks for removed privileged game services.",
+    "Do not remove framework, telephony, security core, updater, search, health HALs, or debug infrastructure solely for space.",
+    "Every approved removal has a regression-test expectation and may be reverted independently."
+  ],
+  "safety": {
+    "retained_input_method_package": "com.sohu.inputmethod.sogou.xiaomi",
+    "retained_input_method_root": "/app/SogouIME",
+    "donor_input_methods_observed": [
+      "com.baidu.input_mi",
+      "com.sohu.inputmethod.sogou.xiaomi",
+      "com.iflytek.inputmethod.miui"
+    ],
+    "config_cleanup": [
+      {
+        "file": "/etc/device_features/madrid.xml",
+        "action": "replace_with_stock_peridot_file",
+        "replacement": "/etc/device_features/peridot.xml",
+        "reason": "target device identity/features"
+      },
+      {
+        "file": "/etc/permissions/privapp-permissions-product.xml",
+        "action": "remove_privapp_block",
+        "package": "com.xiaomi.gamecenter.sdk.service"
+      },
+      {
+        "file": "/etc/permissions/privapp-permissions-product.xml",
+        "action": "remove_privapp_block",
+        "package": "com.xiaomi.minigame"
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "name": "MiShop",
+      "root": "/data-app/MiShop",
+      "file_count": 1,
+      "size_bytes": 221513316,
+      "on_disk_bytes": 217563136,
+      "package": "com.xiaomi.shop",
+      "is_input_method": false,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional Xiaomi CN storefront",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "Health",
+      "root": "/data-app/Health",
+      "file_count": 1,
+      "size_bytes": 129489112,
+      "on_disk_bytes": 102375424,
+      "package": "com.mi.health",
+      "is_input_method": false,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional user-facing health application; no product config reference found",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MIUIMusicT",
+      "root": "/data-app/MIUIMusicT",
+      "file_count": 1,
+      "size_bytes": 127298626,
+      "on_disk_bytes": 93966336,
+      "package": "com.miui.player",
+      "is_input_method": false,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional user-facing music application",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "SmartHome",
+      "root": "/data-app/SmartHome",
+      "file_count": 1,
+      "size_bytes": 104260036,
+      "on_disk_bytes": 93827072,
+      "package": "com.xiaomi.smarthome",
+      "is_input_method": false,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional smart-home application",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MIUIYoupin",
+      "root": "/data-app/MIUIYoupin",
+      "file_count": 1,
+      "size_bytes": 95853555,
+      "on_disk_bytes": 91881472,
+      "package": "com.xiaomi.youpin",
+      "is_input_method": false,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional Xiaomi shopping application",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "BaiduIME",
+      "root": "/data-app/BaiduIME",
+      "file_count": 1,
+      "size_bytes": 87970555,
+      "on_disk_bytes": 82976768,
+      "package": "com.baidu.input_mi",
+      "is_input_method": true,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "input_method",
+      "decision": "approved_remove",
+      "rationale": "optional preload IME; SogouIME retained",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MIpay",
+      "root": "/data-app/MIpay",
+      "file_count": 1,
+      "size_bytes": 115360140,
+      "on_disk_bytes": 80703488,
+      "package": "com.mipay.wallet",
+      "is_input_method": false,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional China payment/wallet application",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MIUIVideo",
+      "root": "/data-app/MIUIVideo",
+      "file_count": 1,
+      "size_bytes": 97451603,
+      "on_disk_bytes": 74448896,
+      "package": "com.miui.video",
+      "is_input_method": false,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional user-facing video application",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "SogouIME",
+      "root": "/app/SogouIME",
+      "file_count": 1,
+      "size_bytes": 85645766,
+      "on_disk_bytes": 73995352,
+      "package": "com.sohu.inputmethod.sogou.xiaomi",
+      "is_input_method": true,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "input_method",
+      "decision": "retain_required_input_method",
+      "rationale": "retained as the clean-v0 normal input method",
+      "regression_tests": [
+        "SetupWizard/Settings can select and invoke a normal keyboard"
+      ]
+    },
+    {
+      "name": "MIUIGameCenter",
+      "root": "/data-app/MIUIGameCenter",
+      "file_count": 1,
+      "size_bytes": 75600674,
+      "on_disk_bytes": 60489728,
+      "package": "com.xiaomi.gamecenter",
+      "is_input_method": false,
+      "config_references": [
+        "/etc/device_features/madrid.xml"
+      ],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional China game-center client; Madrid device-feature reference disappears with peridot.xml replacement",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MIUIDuokanReader",
+      "root": "/data-app/MIUIDuokanReader",
+      "file_count": 1,
+      "size_bytes": 64141040,
+      "on_disk_bytes": 59826176,
+      "package": "com.duokan.reader",
+      "is_input_method": false,
+      "config_references": [
+        "/etc/device_features/madrid.xml"
+      ],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional reader application; Madrid device-feature reference disappears with peridot.xml replacement",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "iFlytekIME",
+      "root": "/data-app/iFlytekIME",
+      "file_count": 1,
+      "size_bytes": 59439512,
+      "on_disk_bytes": 56086528,
+      "package": "com.iflytek.inputmethod.miui",
+      "is_input_method": true,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "input_method",
+      "decision": "approved_remove",
+      "rationale": "optional preload IME; SogouIME retained",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MiGameCenterSDKService",
+      "root": "/priv-app/MiGameCenterSDKService",
+      "file_count": 1,
+      "size_bytes": 34915434,
+      "on_disk_bytes": 28800088,
+      "package": "com.xiaomi.gamecenter.sdk.service",
+      "is_input_method": false,
+      "config_references": [
+        "/etc/permissions/privapp-permissions-product.xml"
+      ],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional game-center support service; permission block removed with package",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MiniGameService",
+      "root": "/priv-app/MiniGameService",
+      "file_count": 1,
+      "size_bytes": 33325974,
+      "on_disk_bytes": 29405184,
+      "package": "com.xiaomi.minigame",
+      "is_input_method": false,
+      "config_references": [
+        "/etc/permissions/privapp-permissions-product.xml"
+      ],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional mini-game privileged service; permission block removed with package",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "TinyGame",
+      "root": "/data-app/TinyGame",
+      "file_count": 1,
+      "size_bytes": 22561303,
+      "on_disk_bytes": 17940480,
+      "package": "com.xiaomi.tinygame",
+      "is_input_method": false,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional mini-game client",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "OS4VipAccount",
+      "root": "/data-app/OS4VipAccount",
+      "file_count": 1,
+      "size_bytes": 37081037,
+      "on_disk_bytes": 31637504,
+      "package": "com.xiaomi.vipaccount",
+      "is_input_method": false,
+      "config_references": [],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional VIP/account upsell application",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MIUIEmail",
+      "root": "/data-app/MIUIEmail",
+      "file_count": 1,
+      "size_bytes": 30442947,
+      "on_disk_bytes": 19533824,
+      "package": "com.android.email",
+      "is_input_method": false,
+      "config_references": [
+        "/etc/device_features/madrid.xml"
+      ],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional mail client; Madrid device-feature reference disappears with peridot.xml replacement",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MIUINotes",
+      "root": "/data-app/MIUINotes",
+      "file_count": 1,
+      "size_bytes": 80259146,
+      "on_disk_bytes": 51924992,
+      "package": "com.miui.notes",
+      "is_input_method": false,
+      "config_references": [
+        "/etc/device_features/madrid.xml"
+      ],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional notes application; added to preserve SogouIME while maintaining super headroom",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    },
+    {
+      "name": "MiuiScanner",
+      "root": "/data-app/MiuiScanner",
+      "file_count": 1,
+      "size_bytes": 85402858,
+      "on_disk_bytes": 49754112,
+      "package": "com.xiaomi.scanner",
+      "is_input_method": false,
+      "config_references": [
+        "/etc/device_features/madrid.xml"
+      ],
+      "mondo_removed": true,
+      "dependencies_reviewed": true,
+      "classification": "optional_user_facing_or_game_preload",
+      "decision": "approved_remove",
+      "rationale": "optional scanner application; added to preserve SogouIME while maintaining super headroom",
+      "regression_tests": [
+        "boot completes without package-manager fatal errors",
+        "Settings opens and app-management works",
+        "no repeated PackageManager/PermissionManager errors for the removed package"
+      ]
+    }
+  ]
+}

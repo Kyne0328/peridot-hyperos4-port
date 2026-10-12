@@ -1,0 +1,75 @@
+{
+  "version": 1,
+  "status": "recommended_source_and_consumer_supported_offline_policy_not_applied",
+  "changes": [
+    {
+      "operation": "remove_file_from_composed_output_only",
+      "partition": "mi_ext",
+      "path": "/product/etc/sysconfig/android.hardware.telephony.euicc.xml",
+      "expected_sha256": "fcd2ea0661706bf1bcce138b11438359d3242fdc9103b7e539aa11b4ebd8f9fb",
+      "size": 157,
+      "original_metadata": {
+        "path": "/product/etc/sysconfig/android.hardware.telephony.euicc.xml",
+        "nid": 8044661,
+        "mode": 33188,
+        "uid": 0,
+        "gid": 0,
+        "size": 157,
+        "addr": 4294967295,
+        "layout": 2,
+        "inline": 257429200,
+        "xattrs": {
+          "security.selinux": "753a6f626a6563745f723a73797374656d5f66696c653a7330"
+        }
+      }
+    },
+    {
+      "operation": "remove_file_from_composed_output_only",
+      "partition": "mi_ext",
+      "path": "/product/etc/sysconfig/android.hardware.telephony.euicc.mep.xml",
+      "expected_sha256": "e283d179511afe92c219c48770c009eb8a8f0c5ef79aa50e7ef91209bb3d036d",
+      "size": 901,
+      "original_metadata": {
+        "path": "/product/etc/sysconfig/android.hardware.telephony.euicc.mep.xml",
+        "nid": 17065472,
+        "mode": 33188,
+        "uid": 0,
+        "gid": 0,
+        "size": 901,
+        "addr": 4294967295,
+        "layout": 2,
+        "inline": 546095152,
+        "xattrs": {
+          "security.selinux": "753a6f626a6563745f723a73797374656d5f66696c653a7330"
+        }
+      }
+    }
+  ],
+  "rationale": "Exact F6 stock mi_ext inventory contains no eUICC files; donor files falsely advertise eUICC/eUICC MEP on retained F6 hardware stack. Property removal does not itself remove PackageManager declarations. Both files declare euicc, so removing only one is insufficient.",
+  "consumer_evidence": {
+    "services_jar_sha256": "242ae9bd14b90961d2aab1b7f12780630112a3fe16394040a546de61d95d544d",
+    "method": "Lcom/android/server/SystemConfig;->readAllPermissionsFromXml()V",
+    "path_read": "getProductDirectory at unit340; buildPath etc/sysconfig at348; readPermissions at352",
+    "systemconfig_evidence": "system-config-code.json",
+    "mi_ext_visibility": "Parent implement_global_build_config confirms separately reviewed donor init overlay mounts mi_ext/product/etc above product/etc; these files are visible to product sysconfig traversal.",
+    "declared_features": [
+      "android.hardware.telephony.euicc",
+      "android.hardware.telephony.euicc.mep"
+    ],
+    "known_settings_guards": "MiuiUtils.isSupportEsimMode requires support_esim; SettingsFeatures.isNeedESIMFeature requires (support_esim OR use_google_lpa) AND country result",
+    "settings_evidence": "esim-exact-key-consumers.json"
+  },
+  "guards": [
+    "Verify both input XML hashes exactly, otherwise stop",
+    "Final effective packaged properties ro.vendor.miui.support_esim and ro.vendor.miui.use_google_lpa must both be absent or false across precedence-resolved property sources",
+    "Search composed product/mi_ext/vendor/odm sysconfig and permissions XMLs for any remaining feature declarations named android.hardware.telephony.euicc or android.hardware.telephony.euicc.mep; absence is required before claiming feature-advertisement cleanup complete",
+    "Do not remove any unrelated sysconfig file or edit other feature declarations",
+    "Preserve all common/region/operator cust_features metadata, including country_support_esim, unless separate consumer evidence requires a change",
+    "Rebuilt-image file inventory must show both files absent and every unrelated sysconfig file hash unchanged"
+  ],
+  "limits": [
+    "Removing unsupported hardware advertisements is not an eSIM implementation or hardware validation",
+    "No installation,app-data change,phone action or ROM executable execution is part of this policy",
+    "Current coverage did not find an independent literal consumer for country_support_esim,cota_enable_esim_carrier_list,config_qc_esim_nv_update; this is a coverage limit, not proof of unused metadata"
+  ]
+}

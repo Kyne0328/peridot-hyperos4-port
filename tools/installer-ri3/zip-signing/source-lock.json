@@ -1,0 +1,59 @@
+{
+  "acquired_utc": "2026-10-03T03:01:19.127687+00:00",
+  "sources": [
+    {
+      "name": "SignApk.java",
+      "repo": "platform/build",
+      "commit": "045a3d6a3e359633a14853a5a5e1e4f2a11cbdae",
+      "source_path": "tools/signapk/src/com/android/signapk/SignApk.java",
+      "url": "https://android.googlesource.com/platform/build/+/045a3d6a3e359633a14853a5a5e1e4f2a11cbdae/tools/signapk/src/com/android/signapk/SignApk.java?format=TEXT",
+      "sha256": "6aa7fa0c1a5aae0f0595e519023c6ee2f70d75ce5bc8aac8e9d9a87961eb2bd2",
+      "bytes": 60936
+    },
+    {
+      "name": "verifier.cpp",
+      "repo": "platform/bootable/recovery",
+      "commit": "ceb7924c43dc2e1be597ffa7b7f9fd5c5f7ddcb7",
+      "source_path": "otautil/verifier.cpp",
+      "url": "https://android.googlesource.com/platform/bootable/recovery/+/ceb7924c43dc2e1be597ffa7b7f9fd5c5f7ddcb7/otautil/verifier.cpp?format=TEXT",
+      "sha256": "3a19c0d8bee613b7c54f6e767d0036af240ab18fc784e1451179909efc22be8d",
+      "bytes": 15575
+    },
+    {
+      "name": "asn1_decoder.cpp",
+      "repo": "platform/bootable/recovery",
+      "commit": "ceb7924c43dc2e1be597ffa7b7f9fd5c5f7ddcb7",
+      "source_path": "otautil/asn1_decoder.cpp",
+      "url": "https://android.googlesource.com/platform/bootable/recovery/+/ceb7924c43dc2e1be597ffa7b7f9fd5c5f7ddcb7/otautil/asn1_decoder.cpp?format=TEXT",
+      "sha256": "3d4f753d73cb646a3e3d7b48cb8c56c43f6e773bbbede59177f1c72663002b2c",
+      "bytes": 3647
+    },
+    {
+      "name": "asn1_decoder.h",
+      "repo": "platform/bootable/recovery",
+      "commit": "ceb7924c43dc2e1be597ffa7b7f9fd5c5f7ddcb7",
+      "source_path": "otautil/include/private/asn1_decoder.h",
+      "url": "https://android.googlesource.com/platform/bootable/recovery/+/ceb7924c43dc2e1be597ffa7b7f9fd5c5f7ddcb7/otautil/include/private/asn1_decoder.h?format=TEXT",
+      "sha256": "5d714a60a18a42f876607bd272d6d2a24da5b2451521963f047b73c2cd10da58",
+      "bytes": 1755
+    },
+    {
+      "name": "verifier.h",
+      "repo": "platform/bootable/recovery",
+      "commit": "ceb7924c43dc2e1be597ffa7b7f9fd5c5f7ddcb7",
+      "source_path": "otautil/include/otautil/verifier.h",
+      "url": "https://android.googlesource.com/platform/bootable/recovery/+/ceb7924c43dc2e1be597ffa7b7f9fd5c5f7ddcb7/otautil/include/otautil/verifier.h?format=TEXT",
+      "sha256": "f6db32eadc647ad4a823eb630da78c104cc1aa63f316854312dc30fc8ba90620",
+      "bytes": 3557
+    },
+    {
+      "name": "testkey.x509.pem",
+      "repo": "platform/build",
+      "commit": "045a3d6a3e359633a14853a5a5e1e4f2a11cbdae",
+      "source_path": "target/product/security/testkey.x509.pem",
+      "url": "https://android.googlesource.com/platform/build/+/045a3d6a3e359633a14853a5a5e1e4f2a11cbdae/target/product/security/testkey.x509.pem?format=TEXT",
+      "sha256": "a4384ba815b9499a5ce349b4e33c1755278873fe2eac150a068823f526e6dbde",
+      "bytes": 1675
+    }
+  ]
+}

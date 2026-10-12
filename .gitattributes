@@ -1,0 +1,4 @@
+* text=auto eol=lf
+# Preserve exact bytes of checksum-pinned metadata and upstream sources.
+*.json -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+tools/installer-ri3/native-updater/backend/vendor/** -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

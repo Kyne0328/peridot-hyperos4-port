@@ -1,0 +1,69 @@
+F6 GLOBAL HYPEROS4 DEV2 RI4 DECRYPT — PERSONAL EXPERIMENTAL RECOVERY ZIP
+
+This is a rebuilt installation candidate, not a phone-tested release. The ZIP
+does not require booting slot A or installing the RI3 recovery/vbmeta pair first.
+It installs the complete A boot stack, included Global firmware, final recovery,
+and shared super from an already WORKING recovery on either slot. For this phone,
+B is the known working Android slot. Do not switch to A before installing.
+
+What changed
+- Removed the preinstalled paired-recovery and exact-existing-firmware gates.
+- Included all 32 required image payloads and authenticated their hashes before
+  writes. Installed-image writes are synced and read back before reporting success.
+- Slot A is selected only after all writes, readbacks and final checks pass.
+- Removed userdata fileencryption, keydirectory and metadata_encryption options
+  from vendor, vendor_boot and the installed recovery. Existing encrypted data
+  cannot be kept by this decrypted installation: Format Data is required.
+- Retained SELinux and the AVB flags=0 policy. Updated the vendor verity tree,
+  vendor_boot descriptor and signed root vbmeta to match the new image bytes.
+  New vendor FEC parity was not generated; its authenticated verity tree remains.
+- Partition payloads use partitions/*.bin instead of images/*.img. This avoids
+  the inspected OrangeFox image-name ROM classifier and its metadata-deleting
+  pre-hook/recovery-restoring post-hook. Actual GUI execution remains untested.
+
+Installation
+1. Back up all files, accounts, apps and settings to a computer/external storage.
+   Format Data deletes EVERYTHING in internal storage. Have a working stock-ROM
+   restoration package available; this installation is not transactional.
+2. Use an unlocked POCO F6/peridot. Finish any OTA/snapshot merge before entering
+   recovery. The installer checks the snapshot HAL and metadata, and refuses an
+   active, unreadable or ambiguous state. It never cancels snapshots or erases
+   metadata to force a pass. Use the supplied original OrangeFox crypto family
+   with its boot-control HAL/tools; other recovery families are not validated.
+3. Boot an existing WORKING recovery on B. Check the display and touch first.
+   If no working recovery exists, stop and resolve that prerequisite. This ZIP
+   cannot repair the running recovery before its installer can be launched.
+4. Select the RI4 DECRYPT ZIP through the ordinary Install page, one ZIP only.
+   Use USB-OTG with a filesystem that supports files over 4 GiB; FAT32 cannot
+   hold this ZIP. Readable internal storage is also allowed by the native source
+   checks, but the ZIP will be lost when internal storage is formatted.
+   ADB sideload/CLI/ORS and custom themes are not validated installation routes.
+5. Turn OFF automatic OrangeFox reflashing, automatic root and AVB/verity patching.
+   In an existing recovery without the RI4 certificate, turn OFF outer ZIP
+   signature verification. The source-built updater independently verifies the
+   complete signed ZIP using its compiled public key before any installation
+   preparation; it never trusts a certificate supplied by an arbitrary ZIP.
+6. Swipe to install. Do not interrupt. The installer replaces shared super and
+   writes all 31 included physical image prefixes to slot A. It installs the
+   final recovery itself; no separate recovery/vbmeta setup flash is needed.
+7. After verified success, reboot to Recovery to load the new complete A boot
+   environment. Confirm recovery display/touch work, then choose Format Data
+   and type yes. This is a full format, not a cache wipe or ordinary data wipe.
+   If recovery or formatting fails, stop and retain logs; do not guess at erasing
+   metadata, flashing random boot images, or disabling verification flags.
+8. Reboot System. Keep the bootloader unlocked. Boot, touchscreen behavior,
+   plaintext-data initialization and all hardware still require device testing.
+
+Failure/rollback
+No userdata/metadata format, key deletion, automatic reboot, root injection or
+slot-B physical image write is performed by the installer. However shared super
+is replaced with A-populated/B-empty logical contents. After a partial or complete
+ROM write, switching to B is NOT an old-ROM rollback. If a write fails, stay in
+recovery, save /tmp/recovery.log and use a complete established restore procedure.
+Selecting A updates boot-control metadata and can change B's slot priority even
+though B's physical image bytes are preserved.
+
+Integrity
+See VALIDATION.json and the ZIP's SHA256 file. The ZIP uses a dedicated personal
+development signing identity, not an OEM production key. No private keys are
+included. Source RI2/RI3 archives are retained unchanged.

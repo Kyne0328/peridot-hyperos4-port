@@ -1,0 +1,135 @@
+{
+  "schema_version": 1,
+  "tools": [
+    {
+      "name": "payload-dumper-go",
+      "upstream": "ssut/payload-dumper-go",
+      "version": "2.0.2",
+      "platform": "windows_amd64",
+      "url": "https://github.com/ssut/payload-dumper-go/releases/download/2.0.2/payload-dumper-go_2.0.2_windows_amd64.tar.gz",
+      "archive_sha256": "7ed78485afcb23a7f9ef7d1bbd8429ee11d87d69173b0c23e32cd8de2250e57b",
+      "executable_sha256": "4111db087c8f84446d90477b45fdbf5f49c7f512df6494934525d71884e679ef",
+      "executable_path": "builder/tools/bin/windows/payload-dumper-go.exe",
+      "source_vendored": false
+    },
+    {
+      "name": "avbtool",
+      "upstream": "AOSP platform/external/avb",
+      "version": "1.4.0",
+      "platform": "python3",
+      "source_tag": "android-cts-17.0_r1",
+      "url": "https://android.googlesource.com/platform/external/avb/+/refs/tags/android-cts-17.0_r1/avbtool.py?format=TEXT",
+      "download_encoding": "base64",
+      "executable_sha256": "1aa6f2b462aa67aa3fdf488bee83ab517de8ad9d8228c7b45c35267ab2cf6781",
+      "executable_path": "builder/tools/bin/windows/avbtool.py",
+      "source_vendored": false
+    },
+    {
+      "name": "aosp-avb-testkey-rsa4096",
+      "upstream": "AOSP platform/external/avb",
+      "source_tag": "android-cts-17.0_r1",
+      "role": "public development-only AVB signing key",
+      "url": "https://android.googlesource.com/platform/external/avb/+/refs/tags/android-cts-17.0_r1/test/data/testkey_rsa4096.pem?format=TEXT",
+      "download_encoding": "base64",
+      "sha256": "6a224754880a57ab9cbd308267cd157d94cf05a1c8cb851aec4090e045d24121",
+      "path": "builder/tools/bin/keys/aosp-avb-testkey-rsa4096.pem",
+      "production_key": false,
+      "source_vendored": false
+    },
+    {
+      "name": "lpmake.exe",
+      "upstream": "Z-Fovik-RT/HyperOS4.0-Port-Windows-Python",
+      "path": "bin/windows/lpmake.exe",
+      "upstream_blob_sha": "0dd30ab64716264f9c352140159f36afce2f7947",
+      "sha256": "602d59d2670f6dccfef81d854444aafe2cac7995d07e22158271bef65accaf3d",
+      "size_bytes": 1992704,
+      "role": "logical-partition super image construction",
+      "source_vendored": false
+    },
+    {
+      "name": "mkfs.erofs.exe",
+      "upstream": "Z-Fovik-RT/HyperOS4.0-Port-Windows-Python",
+      "path": "bin/windows/mkfs.erofs.exe",
+      "upstream_blob_sha": "6bb2cb287148eba772d65c15810a22275db3fc7c",
+      "sha256": "e2bd628cefd10cc3abca747a65f344b21fc6ce2ae0ec36e5cfb9bc64d521202c",
+      "size_bytes": 2073600,
+      "observed_version": "erofs-utils 1.8.10-gee46dd74",
+      "role": "EROFS filesystem construction",
+      "source_vendored": false
+    },
+    {
+      "name": "lpunpack.exe",
+      "upstream": "Z-Fovik-RT/HyperOS4.0-Port-Windows-Python",
+      "path": "bin/windows/lpunpack.exe",
+      "upstream_blob_sha": "21076ff0a6ffc6a410999416abb85b03971535ca",
+      "sha256": "dc53c92ee00ba5774fa5cc38d98afa979ebc711d398e97de445d941b0b3dc58d",
+      "size_bytes": 1991680,
+      "source_vendored": false
+    },
+    {
+      "name": "extract.erofs.exe",
+      "upstream": "Z-Fovik-RT/HyperOS4.0-Port-Windows-Python",
+      "path": "bin/windows/extract.erofs.exe",
+      "upstream_blob_sha": "e062bbfad8eabfdce14b8803610ce77b5eed2e91",
+      "sha256": "d7378ddb500c4338c4ef02f0da7601693a16807faafa453c1dc5750baf3b0dca",
+      "size_bytes": 3077632,
+      "source_vendored": false
+    },
+    {
+      "name": "dump.erofs.exe",
+      "upstream": "Z-Fovik-RT/HyperOS4.0-Port-Windows-Python",
+      "path": "bin/windows/dump.erofs.exe",
+      "upstream_blob_sha": "97a7625be0f4ae1831a0824dc5cec6b9763d21d3",
+      "sha256": "85456613664605b40e752fc22eb2a6a24e2966a5c4029af442a52adf7b4286cb",
+      "size_bytes": 1964544,
+      "source_vendored": false
+    },
+    {
+      "name": "simg2img.exe",
+      "upstream": "Z-Fovik-RT/HyperOS4.0-Port-Windows-Python",
+      "path": "bin/windows/simg2img.exe",
+      "upstream_blob_sha": "13b58eb66835fba7351b954e143f6d44244b7b1c",
+      "sha256": "5d840c8352d3790712b68077ab5e224d190737dd6add80541e6a871b6b205546",
+      "size_bytes": 525824,
+      "source_vendored": false
+    },
+    {
+      "name": "cygwin1.dll",
+      "upstream": "Z-Fovik-RT/HyperOS4.0-Port-Windows-Python",
+      "path": "bin/windows/cygwin1.dll",
+      "upstream_blob_sha": "2ac18de32912b99993bf890e6e462c41a341dcdf",
+      "sha256": "ab77212a71c2e2e8b870452d2c32bc72a6708d6e963dd3ebe2ac1a946cffc242",
+      "size_bytes": 3012149,
+      "source_vendored": false
+    },
+    {
+      "name": "7z.exe",
+      "upstream": "NorthStarK-Lvy/XMAPort",
+      "path": "tools/7z.exe",
+      "upstream_blob_sha": "064a1359f8077b97888edc225b3dd490621298b7",
+      "sha256": "83967f1b02b43c4efeda302795722c809e0e81b8307de73558d10484d5676a7d",
+      "size_bytes": 576000,
+      "source_vendored": false
+    },
+    {
+      "name": "7z.dll",
+      "upstream": "NorthStarK-Lvy/XMAPort",
+      "path": "tools/7z.dll",
+      "upstream_blob_sha": "859c48bccc8ed4387756225119facd44521609c8",
+      "sha256": "69fd4df057985c40e510e2fac182881c7f85e90aa13ec703f763a8fdb2ce61f8",
+      "size_bytes": 1906688,
+      "source_vendored": false
+    },
+    {
+      "name": "aapt2.exe",
+      "upstream": "Z-Fovik-RT/HyperOS4.0-Port-Windows-Python",
+      "path": "bin/windows/aapt2.exe",
+      "upstream_blob_sha": "da3eea755f0f1f107eca03b14a0332d76fca26c6",
+      "sha256": "1f02121ed78cf80865c1dfae460d227021bc64338f307591a6a8686f0e100233",
+      "size_bytes": 6004224,
+      "observed_version": "2.20-14304508",
+      "role": "APK manifest/package inspection for dependency review",
+      "source_vendored": false
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "schema_version": 2,
+  "id": "peridot-madrid-4.0.11-clean-v0",
+  "target": {
+    "codename": "peridot",
+    "stock_build": "OS3.0.305.0.WNPCNXM",
+    "stock_sha256": "afa24c37b18d8f51f80cc5767536f249720b19e217d5e9c0adbd34127ad420ac"
+  },
+  "donor": {
+    "codename": "madrid",
+    "build": "OS4.0.11.0.XEOCNXM",
+    "sha256": "f6fac3ca058e74ecfb09be78a5e0c3e063a5742115db8fb447fce16367821a6a"
+  },
+  "filesystem_policy": {
+    "system": "retain_donor_erofs",
+    "system_ext": "retain_donor_erofs",
+    "product": "rebuild_erofs_after_reviewed_trim_and_target_config",
+    "mi_ext": "retain_donor_erofs",
+    "vendor": "retain_stock_erofs",
+    "odm": "retain_stock_erofs_until_conditional_patch_required",
+    "vendor_dlkm": "retain_stock",
+    "system_dlkm": "retain_stock"
+  },
+  "security_policy": {
+    "userdata_encryption": "preserve_stock_fbe_and_metadata_encryption",
+    "avb": "mixed_chain_requires_explicit_policy_before_flashable_output",
+    "avb_evidence": {
+      "stock_peridot_key_sha1": "cb646ab4d06eb30d6b9602b8ea0148e9bf354dd5",
+      "madrid_donor_key_sha1": "bc713b7e9a337f5b88f9cda482bb6832a6cf2518",
+      "clean_product_has_avb_footer": false,
+      "mundo_reference_top_level_flags": 1,
+      "mundo_reference_flag_meaning": "AVB_VBMETA_IMAGE_FLAGS_HASHTREE_DISABLED",
+      "release_gate": "untouched stock or donor vbmeta cannot authenticate the rebuilt product plus mixed stock-hardware/donor-userspace composition",
+      "default_action": "do_not_disable_hashtree_or_verification_without_an_explicit_development_policy"
+    },
+    "privileged_permission_enforcement": "preserve_stock_enforcement",
+    "fake_locked_properties": false
+  },
+  "product_reduction_plan": "madrid-4.0.11-product-reduction-candidates.json",
+  "product_target_config": [
+    {
+      "source_partition": "donor_product",
+      "source_path": "/etc/device_features/madrid.xml",
+      "operation": "remove",
+      "reason": "Madrid device identity must not remain in peridot product"
+    },
+    {
+      "source_partition": "stock_product",
+      "source_path": "/etc/device_features/peridot.xml",
+      "destination_path": "/etc/device_features/peridot.xml",
+      "operation": "copy_stock_version",
+      "evidence": "Mundo uses stock-derived peridot file; its observed 90 Hz addition is optional"
+    },
+    {
+      "source_partition": "donor_product",
+      "source_path": "/etc/displayconfig/display_id_4630946245184196243.xml",
+      "operation": "remove",
+      "reason": "Madrid display panel config"
+    },
+    {
+      "source_partition": "donor_product",
+      "source_path": "/etc/displayconfig/display_id_4630946245184196244.xml",
+      "operation": "remove",
+      "reason": "Madrid display panel config"
+    },
+    {
+      "source_partition": "stock_product",
+      "source_path": "/etc/displayconfig/display_id_4630946545580055171.xml",
+      "destination_path": "/etc/displayconfig/display_id_4630946545580055171.xml",
+      "operation": "copy",
+      "evidence": "byte-identical between official peridot stock and Mundo reference"
+    },
+    {
+      "source_partition": "stock_product",
+      "source_path": "/etc/displayconfig/display_id_4630947033261136259.xml",
+      "destination_path": "/etc/displayconfig/display_id_4630947033261136259.xml",
+      "operation": "copy",
+      "evidence": "byte-identical between official peridot stock and Mundo reference"
+    },
+    {
+      "source_partition": "stock_product",
+      "source_path": "/etc/displayconfig/display_id_4630947195234848131.xml",
+      "destination_path": "/etc/displayconfig/display_id_4630947195234848131.xml",
+      "operation": "copy",
+      "evidence": "byte-identical between official peridot stock and Mundo reference"
+    },
+    {
+      "source_partition": "stock_product",
+      "source_path": "/etc/displayconfig/thermal_brightness_control.xml",
+      "destination_path": "/etc/displayconfig/thermal_brightness_control.xml",
+      "operation": "copy",
+      "evidence": "byte-identical between official peridot stock and Mundo reference"
+    }
+  ],
+  "product_config_cleanup": [
+    {
+      "path": "/etc/permissions/privapp-permissions-product.xml",
+      "operation": "remove_privapp_block",
+      "package": "com.xiaomi.gamecenter.sdk.service"
+    },
+    {
+      "path": "/etc/permissions/privapp-permissions-product.xml",
+      "operation": "remove_privapp_block",
+      "package": "com.xiaomi.minigame"
+    }
+  ],
+  "conditional_patches": [
+    {
+      "id": "vibrator-a17-instance-compat",
+      "source_partitions": [
+        "donor_system",
+        "stock_odm"
+      ],
+      "files": [
+        "/system/framework/services.jar",
+        "/odm/bin/hw/vendor.xiaomi.hardware.vibratorfeature.service",
+        "/odm/etc/vintf/manifest/vendor.xiaomi.hardware.vibratorfeature.service.xml"
+      ],
+      "observed_reference_change": "services.jar bypasses Xiaomi vibrator stub; ODM IVibrator instance vibratorfeature -> default",
+      "status": "conditional_runtime_gate",
+      "required_evidence": "clean build vibrator service registration/haptics failure with logs identifying this instance/stub mismatch"
+    },
+    {
+      "id": "nfc-package-replacement",
+      "status": "unresolved_runtime_gate",
+      "required_evidence": "clean build NFC failure plus package/HAL logs; Mundo NQNfcNci differs from stock and donor"
+    }
+  ],
+  "explicitly_excluded": [
+    "Kaorios",
+    "Magisk/KernelSU/root",
+    "fake locked/green verified-boot properties",
+    "blanket AVB removal",
+    "userdata decryption",
+    "mi_ext collapse",
+    "system/system_ext EXT4 conversion",
+    "HyperRepack thermal/performance tweaks",
+    "Mundo 90 Hz device-feature tweak",
+    "notification/FCM modules",
+    "unproven app replacements"
+  ],
+  "acceptance_gate_before_super_rebuild": {
+    "trim_plan_meets_budget": true,
+    "approved_reduction_bytes": 1243141208,
+    "minimum_required_bytes": 945872896,
+    "target_reduction_bytes": 1214308352,
+    "projected_headroom_bytes": 297268312,
+    "dependencies_reviewed": true,
+    "retained_normal_input_method": "com.sohu.inputmethod.sogou.xiaomi",
+    "product_tree_composed": true,
+    "avb_policy_selected": false,
+    "boot_ready_super": false
+  }
+}

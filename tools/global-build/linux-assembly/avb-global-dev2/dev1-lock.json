@@ -1,0 +1,69 @@
+{
+  "dev1_verifier": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global/global_avb.py",
+    "size": 25334,
+    "sha256": "3132011865ca361c93e21ff3250008a5022c014bdeb6458f344c630057f6cfdd"
+  },
+  "official_avb_source": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global/avbtool_source.py",
+    "size": 241912,
+    "sha256": "1aa6f2b462aa67aa3fdf488bee83ab517de8ad9d8228c7b45c35267ab2cf6781"
+  },
+  "source_profile": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global/global-avb-profile.json",
+    "size": 70183,
+    "sha256": "d63d44879d7b3d37d6faf08ea29b910be9e0ea0dc5af58986e14986b7169e6cb"
+  },
+  "product_report": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global/product-signing-report.json",
+    "size": 3404,
+    "sha256": "5630d6ece4b8789c7a0d67ca35d7e80dbcc5654d346d5bfaff305abbad6720ac"
+  },
+  "mi_ext_report": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global/mi_ext-signing-report.json",
+    "size": 3298,
+    "sha256": "eecb23491f6bfdce0342e204cc586800818c4f1bcad59e7a5e409c7fb250ef18"
+  },
+  "metadata_report": {
+    "path": "/workspace/shared/peridot-global-assembly/final-avb/metadata-signing-report.json",
+    "size": 2400,
+    "sha256": "2046b5d644e792ea0ee6cd8bce4dbd05f7c5c1749aea2fb8040d62a180ce471b"
+  },
+  "dev1_map": {
+    "path": "/workspace/shared/peridot-global-assembly/candidate/avb-image-map.json",
+    "size": 4720,
+    "sha256": "c3be8d868607da1603ab549b3a5d25c00a94f77ee4b065943868e45a2eae7ba2"
+  },
+  "dev1_verification": {
+    "path": "/workspace/shared/peridot-global-assembly/candidate/final-avb-verification.json",
+    "size": 5519,
+    "sha256": "fb070303ac5f5615e28a3b6933c0cc1d76876cda2d396381e5253b719d73102b"
+  },
+  "development_key": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global/external/avb/test/data/testkey_rsa4096.pem",
+    "size": 3243,
+    "sha256": "6a224754880a57ab9cbd308267cd157d94cf05a1c8cb851aec4090e045d24121"
+  },
+  "development_public_key": {
+    "path": "/workspace/shared/peridot-global-assembly/avb-global/development.avbpubkey",
+    "size": 1032,
+    "sha256": "7728e30f50bfa5cea165f473175a08803f6a8346642b5aa10913e9d9e6defef6"
+  },
+  "retained_outputs": {
+    "product": {
+      "path": "/workspace/shared/peridot-global-assembly/rebuilt/product.img",
+      "size": 3936165888,
+      "sha256": "e37a3c2537de12c4fc8de5f7bbeb0effcee54afb0db3222c0acde6ed30d5f29e"
+    },
+    "mi_ext": {
+      "path": "/workspace/shared/peridot-global-assembly/rebuilt/mi_ext.img",
+      "size": 1142345728,
+      "sha256": "f45f5b2f947c5a14e7a0e391219079d3b4c97334166db669d72e48d3a20104b7"
+    }
+  },
+  "stock_vendor": {
+    "sha256": "c8bf2bf866e08644dd113adf55804bd867a00282346d7d5542ea3206e7eb771b",
+    "size": 430030848,
+    "origin": "base"
+  }
+}

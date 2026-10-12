@@ -1,0 +1,6 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.android.updater" android:versionCode="70001" android:versionName="KyneOS RI7.1">
+    <uses-sdk android:minSdkVersion="28" android:targetSdkVersion="37" />
+    <application android:label="KyneOS" android:theme="@android:style/Theme.Material.Light.NoActionBar" android:allowBackup="false" android:supportsRtl="true">
+        <activity android:name=".UpdateActivity" android:exported="true" android:label="KyneOS" />
+    </application>
+</manifest>

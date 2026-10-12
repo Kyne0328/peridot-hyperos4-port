@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "id": "peridot-global-3.0.303-pudding-global-4.0.0.9",
+  "target_codename": "peridot",
+  "security": {
+    "preserve_stock_thermal_protections": true,
+    "preserve_stock_fbe_and_metadata_encryption": true,
+    "disable_avb": false,
+    "fake_locked_properties": false,
+    "bypass_app_integrity": false
+  },
+  "stock": {
+    "build": "OS3.0.303.0.WNPMIXM",
+    "region": "Global",
+    "codename": "peridot",
+    "size_bytes": 6376444241,
+    "sha256": "13958bfdfcbaf72709302b6d4806a39e55ed9bd72e23d5a53dbf5606c52340b5",
+    "manifest_sha256": "f46b0fc561e076fb6cbd1614c8531f4f3f3be305aa1055209ca3e8695d18d89f",
+    "metadata": {
+      "ota-type": "AB",
+      "pre-device": "peridot",
+      "post-build": "POCO/peridot_global/peridot:16/BP2A.250605.031.A3/16OS3.1.260714.191143693.QCPEGL.S:user/release-keys",
+      "post-build-incremental": "16OS3.1.260714.191143693.QCPEGL.S",
+      "post-sdk-level": "36",
+      "post-security-patch-level": "2026-07-01",
+      "post-timestamp": "1784282905"
+    },
+    "source_url": "https://bigota.d.miui.com/OS3.0.303.0.WNPMIXM/peridot_global-ota_full-OS3.0.303.0.WNPMIXM-user-16.0-9eb06ac062.zip"
+  },
+  "donor": {
+    "build": "OS4.0.0.9.XPCMIXM",
+    "region": "Global",
+    "codename": "pudding",
+    "size_bytes": 8455089293,
+    "sha256": "b6bc69ddddc7750a4e453c514fd945ca22d166c5ab0704d955b0e6ab81ac5dbd",
+    "manifest_sha256": "5b6f337774f307e88b5dda0331a8dce61329d595e063207f81dbde0d8c9878ed",
+    "metadata": {
+      "ota-type": "AB",
+      "pre-device": "pudding",
+      "post-build": "Xiaomi/pudding_global/pudding:17/CP2A.260605.016/17OS4.0.260910.061621904.QCPEGL.S:user/release-keys",
+      "post-build-incremental": "17OS4.0.260910.061621904.QCPEGL.S",
+      "post-sdk-level": "37",
+      "post-security-patch-level": "2026-09-01",
+      "post-timestamp": "1789016292"
+    },
+    "source_url": "https://bigota.d.miui.com/OS4.0.0.9.XPCMIXM/pudding_global-ota_full-OS4.0.0.9.XPCMIXM-user-17.0-4fe981b89f.zip"
+  }
+}

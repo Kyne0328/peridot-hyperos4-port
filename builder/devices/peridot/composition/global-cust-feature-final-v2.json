@@ -1,0 +1,229 @@
+{
+  "version": 2,
+  "status": "stable_final_offline_manifest_not_applied_by_review_worker",
+  "scope": "Exactly two content replacements and two unsupported eUICC declaration removals in mi_ext; no ROM code execution",
+  "donor_archive_sha256": "b6bc69ddddc7750a4e453c514fd945ca22d166c5ab0704d955b0e6ab81ac5dbd",
+  "base_archive_sha256": "13958bfdfcbaf72709302b6d4806a39e55ed9bd72e23d5a53dbf5606c52340b5",
+  "prerequisite_policies": [
+    {
+      "path": "/workspace/shared/peridot-global-builder/review-cust-features/narrow-policy-v1.json",
+      "sha256": "85776d576e6b8646919a1cd1155b150e1c57068bb5cf9a4371a8e0594b5ad802"
+    },
+    {
+      "path": "/workspace/shared/peridot-global-builder/review-cust-features/topology-amendment-v1.json",
+      "sha256": "540aef850d55a242ba76cd57efdfd9ebd910770cdcc7a617b75205c1b2ba3a9c"
+    },
+    {
+      "path": "/workspace/shared/peridot-global-builder/review-cust-features/esim-sysconfig-policy-v1.json",
+      "sha256": "6ab300cef253cb8193009d2f889bd6d875d3d6da47fd0ffe9a7f76c1075b23c4"
+    }
+  ],
+  "changes": [
+    {
+      "action": "replace_file_content_in_composed_output",
+      "partition": "mi_ext",
+      "path": "/product/etc/cust_features/device_features.xml",
+      "source_preimage_sha256": "35d0e787e5420fad943cd91d8ee2955d8f8670d0181cffb0ec854219ea0cf071",
+      "candidate_path": "/workspace/shared/peridot-global-builder/review-cust-features/candidate-device_features-final-v1.xml",
+      "expected_output_sha256": "469d46cafdc98caad0d8112662c814e9f79a4ea8ec4d8b1dfee83f6319a1bef7",
+      "expected_output_bytes": 5149,
+      "changed_keys_only": [
+        "config_wifi_sar_pattern",
+        "cust_feature_legacy_device_8550_8635_8650",
+        "cust_feature_legacy_device_8635",
+        "device_on_platform_8635",
+        "device_on_platform_8850",
+        "patern2_device",
+        "turbosched_check_is_special_topology"
+      ],
+      "metadata_preserve": {
+        "path": "/product/etc/cust_features/device_features.xml",
+        "nid": 10623102,
+        "mode": 33188,
+        "uid": 0,
+        "gid": 0,
+        "size": 5032,
+        "addr": 1,
+        "layout": 3,
+        "inline": 339939312,
+        "xattrs": {
+          "security.selinux": "753a6f626a6563745f723a73797374656d5f66696c653a7330"
+        }
+      }
+    },
+    {
+      "action": "replace_file_content_in_composed_output",
+      "partition": "mi_ext",
+      "path": "/product/etc/cust_features/cust_features.xml",
+      "source_preimage_sha256": "6c5c3731d2708d7458cf10a05da562bf9d6f1081567e8594e89f598e63f544ad",
+      "candidate_path": "/workspace/shared/peridot-global-builder/review-cust-features/candidate-cust_features-final-v1.xml",
+      "expected_output_sha256": "174f246aedfe6d5a4c6ed24f9e24d7f7363bdc2520742e18d1c22936956db570",
+      "expected_output_bytes": 37012,
+      "changed_keys_only": [
+        "turbosched_check_is_special_topology"
+      ],
+      "metadata_preserve": {
+        "path": "/product/etc/cust_features/cust_features.xml",
+        "nid": 11504253,
+        "mode": 33188,
+        "uid": 0,
+        "gid": 0,
+        "size": 37082,
+        "addr": 3,
+        "layout": 3,
+        "inline": 368136144,
+        "xattrs": {
+          "security.selinux": "753a6f626a6563745f723a73797374656d5f66696c653a7330"
+        }
+      }
+    },
+    {
+      "operation": "remove_file_from_composed_output_only",
+      "partition": "mi_ext",
+      "path": "/product/etc/sysconfig/android.hardware.telephony.euicc.xml",
+      "expected_sha256": "fcd2ea0661706bf1bcce138b11438359d3242fdc9103b7e539aa11b4ebd8f9fb",
+      "size": 157,
+      "original_metadata": {
+        "path": "/product/etc/sysconfig/android.hardware.telephony.euicc.xml",
+        "nid": 8044661,
+        "mode": 33188,
+        "uid": 0,
+        "gid": 0,
+        "size": 157,
+        "addr": 4294967295,
+        "layout": 2,
+        "inline": 257429200,
+        "xattrs": {
+          "security.selinux": "753a6f626a6563745f723a73797374656d5f66696c653a7330"
+        }
+      }
+    },
+    {
+      "operation": "remove_file_from_composed_output_only",
+      "partition": "mi_ext",
+      "path": "/product/etc/sysconfig/android.hardware.telephony.euicc.mep.xml",
+      "expected_sha256": "e283d179511afe92c219c48770c009eb8a8f0c5ef79aa50e7ef91209bb3d036d",
+      "size": 901,
+      "original_metadata": {
+        "path": "/product/etc/sysconfig/android.hardware.telephony.euicc.mep.xml",
+        "nid": 17065472,
+        "mode": 33188,
+        "uid": 0,
+        "gid": 0,
+        "size": 901,
+        "addr": 4294967295,
+        "layout": 2,
+        "inline": 546095152,
+        "xattrs": {
+          "security.selinux": "753a6f626a6563745f723a73797374656d5f66696c653a7330"
+        }
+      }
+    }
+  ],
+  "accepted_additional_sequential_device_preimage": {
+    "sha256": "dae14136e3a12a1186d42d982ad6b0aa24656549acff3054297f80d0fd99d351",
+    "reason": "Builder already applied same six semantic edits with a different formatting/order; validate semantic equivalence to narrow candidate before accepting"
+  },
+  "prebuild_guards": [
+    "Accept original donor device preimage35d0e787e5420fad943cd91d8ee2955d8f8670d0181cffb0ec854219ea0cf071, OR sequential six-edit candidate3f8fee6bf6768f87ae065fb34dc8861f3ba45f3573a3b5d3b18d8f9beb5ce8e2, OR builder six-edit preimage dae14136e3a12a1186d42d982ad6b0aa24656549acff3054297f80d0fd99d351. The latter two must be semantically equal, which was positively verified. Common XML and both deletion targets must match their pinned exact preimages.",
+    "Resolve final packaged property precedence and ensure persist.sys.miui_animator_sched.big_prime_cores is exactly3-7; alternatively absence/default is acceptable only with documented donor default [3,4,5,6,7]",
+    "Final packaged ro.vendor.miui.support_esim and ro.vendor.miui.use_google_lpa must both be absent or false",
+    "No other feature declaration for android.hardware.telephony.euicc or android.hardware.telephony.euicc.mep may remain in composed product/mi_ext/vendor/odm sysconfig or permissions XMLs",
+    "Preserve target UID/GID0:0,0644 and SELinux system_file xattr on replaced content; do not replace unrelated directories or subtree",
+    "Do not silently drop topology guards. If topology guard fails, use narrow candidate alone and keep common XML unchanged; record amendment unimplemented. eSIM guard evaluated separately"
+  ],
+  "postbuild_checks": [
+    "Extract both rebuilt files and verify exact expected output SHA256 values and metadata",
+    "Verify both eUICC sysconfig paths are absent",
+    "Compare unrelated mi_ext files against composition baseline; this manifest authorizes no other XML/APK/property mutations",
+    "Confirm exactly7 changed device keys and1 changed common key with XML parser; all other nodes remain equivalent"
+  ],
+  "unchanged_unverified_gates": [
+    "thermal_pwm_90hz_enabled",
+    "thermal_fifty_battery_temp_popup_window_enabled",
+    "thermal_ninety_fps_thermal_limit_enabled",
+    "thermal_cgame_qq_intent_enabled",
+    "thermal_cgame_wechat_intent_enabled",
+    "haptic_config_bcl_support",
+    "support_vibration_BCL_mode",
+    "audiozoom_device_type",
+    "audiozoom_license_uuid_map",
+    "low_temp_charge",
+    "wifi_tx_boost_allowed",
+    "config_support_cn_sar_st",
+    "config_support_packet_filter",
+    "ffu_support_enable",
+    "support_bt_dbam",
+    "support_tp_proximity_mode",
+    "support_perfsense_dfs",
+    "video_config_mi_aie_enable",
+    "config_support_venue_mode",
+    "nfc_mitouch_version",
+    "powerkeeper_SocOptimization2",
+    "powerkeeper_ExtremeScenarioAware"
+  ],
+  "other_common_and_region_metadata": "Retained byte-equivalent except common specialtopology removal; includes battery_manager_4.0,hypercomm/network updates,region sleep-mode additions,eSIM country metadata,SIM/operator lists",
+  "observed_coverage": {
+    "framework_jars": "All available exact donor system_ext framework JARs scanned for exact feature literals and DEX references",
+    "apks": 348,
+    "apk_zero_length_nonzip_placeholders": 6,
+    "native": "Available donor non-APK native/text files plus3 exact stock vendor thermal/haptic samples; negative literal search is not proof of absence of reflection/indirect consumers"
+  },
+  "runtime_gates": [
+    "Offline guard cannot resolve previously persisted property values in user data; verify actual big_prime_cores before runtime correctness claim",
+    "Untraced thermal/haptic/audio/charging/RF/FFU capabilities remain unvalidated rather than globally settrue/setfalse",
+    "No live phone,boot,radio,panel,thermal,scheduler,or eSIM test was performed",
+    "The final image remains an untested port artifact; these static checks cannot certify hardware safety or full feature functionality"
+  ],
+  "evidence_files": [
+    "source-comparison.json",
+    "framework-feature-code.json",
+    "services-feature-code.json",
+    "platform-consumer-code.json",
+    "target-feature-consumers.json",
+    "app-feature-consumers.json",
+    "base-native-feature-strings.json",
+    "system-config-code.json",
+    "esim-exact-key-consumers.json"
+  ],
+  "supersedes_manifest": {
+    "path": "/workspace/shared/peridot-global-builder/review-cust-features/final-manifest-v1.json",
+    "sha256": "7e55305b62b33ff7bc1a17184bf796e9882eb9339e08701eafc4e7bf73f80814"
+  },
+  "prebuild_guard_evidence": {
+    "path": "/workspace/shared/peridot-global-builder/review-cust-features/final-guard-scan.json",
+    "sha256": "ed65876a802e9e093296d8b4f910fa97d845b8d294eda53793cc8173b9268017",
+    "xml_scope_complete": true,
+    "xml_file_counts": {
+      "vendor": 63,
+      "odm": 15,
+      "product": 49,
+      "mi_ext": 25,
+      "system_ext": 94
+    },
+    "no_extra_euicc_declarations": true,
+    "stock_xml_recovery": {
+      "path": "/workspace/shared/peridot-global-builder/review-cust-features/guard-xml-source-extraction.json",
+      "sha256": "f3a9b019b67f70ccfae4cc0704741194971d5a8698c1d19dd0bc4f3b2827bc58",
+      "files": 78,
+      "bytes": 66930,
+      "all_source_operation_hashes_verified": true
+    },
+    "packaged_property_files_and_rc_scanned": 494,
+    "target_property_occurrences": [],
+    "system_property_inventory": "Full exact donor system-source-inventory.json contains only /system/build.prop among .prop/prop.default names; this file was scanned",
+    "effective_packaged_core_list": "Absent in scanned packaged sources; exact donor constructor fallback stringdefault and clinit BIG_CORES[3,4,5,6,7] apply",
+    "core_evidence": {
+      "path": "/workspace/shared/peridot-global-builder/review-cust-features/platform-consumer-code.json",
+      "sha256": "53676eb05678352b976993d751f226b522a3f4e4e51fd5cbd68f1896b86d3c91",
+      "methods": [
+        "TurboSchedMonitorImpl.<clinit> units390-412",
+        "TurboSchedMonitorImpl.<init> units126-149",
+        "TurboSchedMonitorImpl.tryGetAffinityMethod"
+      ]
+    },
+    "support_esim_packaged": "absent",
+    "use_google_lpa_packaged": "absent",
+    "runtime_limit": "This is static packaged-source absence, not a statement about old userdata,persisted values,or later dynamic/runtime assignments"
+  }
+}

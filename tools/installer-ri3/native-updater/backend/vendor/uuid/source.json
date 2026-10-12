@@ -1,0 +1,8 @@
+{
+  "repository": "platform/external/e2fsprogs",
+  "tag": "aml_adb_331011040",
+  "commit": "e34991429ebdee8a75a7f20d08287edab48d3d06",
+  "url": "https://android.googlesource.com/platform/external/e2fsprogs/+/e34991429ebdee8a75a7f20d08287edab48d3d06/lib/uuid/uuid.h?format=TEXT",
+  "sha256": "2c8597ce83cafd6b943401070021be74ffee76a0b83cc652c95719a06dcf63cf",
+  "bytes": 3258
+}

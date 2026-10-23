@@ -1,0 +1,32 @@
+name: RI8 source checks
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/kyneos/**'
+      - 'tools/performance/**'
+      - '.github/workflows/ri8-source-checks.yml'
+  pull_request:
+    paths:
+      - 'tools/kyneos/**'
+      - 'tools/performance/**'
+      - '.github/workflows/ri8-source-checks.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Compile RI8 and performance Python
+        run: python -m compileall -q tools/kyneos tools/performance
+      - name: Reclaim tests (no device)
+        working-directory: tools/performance
+        run: python -m unittest -v test_capture_reclaim_causality test_mglru_postcall_ab
+      - name: GPU policy packaging and scope tests
+        run: python -m unittest discover -s tools/performance/kyneos_gpu_telemetry -p 'test_build.py' -v

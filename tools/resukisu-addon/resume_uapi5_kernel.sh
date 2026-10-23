@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BASE=/home/kyne/peridot-resukisu-uapi5-v1
+BASE=$HOME/peridot-resukisu-uapi5-v1
 COMMON="$BASE/common"
 OUT="$BASE/out"
 LOG="$BASE/build.log"

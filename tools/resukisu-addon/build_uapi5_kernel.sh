@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BASE=/home/kyne/peridot-resukisu-uapi5-v1
+BASE=$HOME/peridot-resukisu-uapi5-v1
 COMMON_SHA=0c3d559bcd85c64dae9c9c9687abbe5347fff3ad
 RESUKISU_SHA=8770c7e324a22895703c4916b8a16520e0b81c79
 SUSFS_SHA=24743360ea08d98f6ad72b856851abed8de5854f

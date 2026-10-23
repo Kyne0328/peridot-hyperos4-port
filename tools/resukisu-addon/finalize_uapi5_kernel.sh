@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
-BASE=/home/kyne/peridot-resukisu-uapi5
+BASE=$HOME/peridot-resukisu-uapi5
 COMMON="$BASE/common"
 OUT="$BASE/out-uapi5"
 PUBLIC=/mnt/c/Dev/peridot-hyperos4-port/.cache/resukisu-uapi5-finalize/stock-module-public.pem

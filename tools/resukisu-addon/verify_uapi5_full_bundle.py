@@ -7,6 +7,8 @@ Never loads a module, touches a device, or flashes a partition.
 from __future__ import annotations
 
 from pathlib import Path
+import os
+import shutil
 import hashlib
 import json
 import struct
@@ -18,21 +20,22 @@ from cryptography import x509
 from cryptography.hazmat.primitives.serialization import Encoding
 
 ROOT = Path(__file__).resolve().parents[2]
-BUILD = ROOT / "builder/work/resukisu-uapi5-fullbundle-20261004"
+ASSET_ROOT = Path(os.environ.get("BAKASU_CI_ASSET_ROOT", str(ROOT)))
+BUILD = Path(os.environ.get("BAKASU_CI_OUTPUT", str(ROOT / "builder/work/resukisu-uapi5-fullbundle-20261004")))
 RECEIPT = BUILD / "build-receipt.json"
 IMAGE = BUILD / "Image"
 CONFIG = BUILD / "kernel.config"
 SYMVERS = BUILD / "vmlinux.symvers"
-CERT = ROOT / ".cache/resukisu-uapi5-finalize/stock-module-public.pem"
-STOCK_SYMVERS = ROOT / "00-manifest/resukisu-candidate/kernel_aarch64_Module.symvers"
-VENDOR_BOOT = ROOT / ".cache/global-single-recovery-ri2/source-images/images/vendor_boot.img"
+CERT = Path(os.environ.get("BAKASU_CI_STOCK_CERT", str(ASSET_ROOT / ".cache/resukisu-uapi5-finalize/stock-module-public.pem")))
+STOCK_SYMVERS = ASSET_ROOT / "00-manifest/resukisu-candidate/kernel_aarch64_Module.symvers"
+VENDOR_BOOT = ASSET_ROOT / ".cache/global-single-recovery-ri2/source-images/images/vendor_boot.img"
 
 EXPECTED_RELEASE = "6.1.138-android14-11-g0c3d559bcd85-ab14529422"
 EXPECTED_FEATURE_SET = "SUSFS+NoMount+BBG+NET+DS+NTSync+Ptrace+Unicode+BPF+Perf"
 EXPECTED_FEATURES = EXPECTED_FEATURE_SET.split("+")
 EXPECTED_PINS = {
     "common": "0c3d559bcd85c64dae9c9c9687abbe5347fff3ad",
-    "resukisu": "8770c7e324a22895703c4916b8a16520e0b81c79",
+    "resukisu": os.environ.get("BAKASU_CI_SHA", "8770c7e324a22895703c4916b8a16520e0b81c79"),
     "susfs": "24743360ea08d98f6ad72b856851abed8de5854f",
     "wildkernels": "e0ecd61219baaa0c3eae821246e31136302fd0dc",
     "kernel_patches": "41ae18b35d20e0c6ac04116785a4a1089528ae94",
@@ -51,9 +54,8 @@ REQUIRED_Y = [
     "NOMOUNT", "MODVERSIONS", "MODULE_SIG_PROTECT", "CFI_CLANG",
 ]
 
-sys.path.insert(0, str(ROOT / "tools/resukisu-candidate"))
-from check_module_crcs import imports
-from inspect_baseline import ramdisk
+sys.path.insert(0, str(ROOT / "tools/resukisu-addon/ci"))
+from kernel_abi import imports, ramdisk
 
 
 def need(ok: bool, message: str) -> None:
@@ -91,7 +93,7 @@ def symbol_map(path: Path) -> dict[str, int]:
 def collect_modules() -> list[tuple[str, str, bytes]]:
     modules: list[tuple[str, str, bytes]] = []
     for origin in ("system_dlkm", "vendor_dlkm"):
-        tree = ROOT / ".cache/resukisu-candidate" / (origin + "-extracted") / "lib"
+        tree = ASSET_ROOT / ".cache/resukisu-candidate" / (origin + "-extracted") / "lib"
         need(tree.is_dir(), f"Missing extracted module tree: {tree}")
         for path in sorted(tree.rglob("*.ko")):
             modules.append((origin, path.relative_to(tree).as_posix(), path.read_bytes()))
@@ -123,7 +125,7 @@ def verify_module_signature(data: bytes, temp: Path) -> str:
     content.write_bytes(data[:start])
     result = subprocess.run(
         [
-            "C:/Program Files/Git/usr/bin/openssl.exe", "cms", "-verify",
+            os.environ.get("BAKASU_CI_OPENSSL", shutil.which("openssl") or "C:/Program Files/Git/usr/bin/openssl.exe"), "cms", "-verify",
             "-binary", "-inform", "DER", "-in", str(sig),
             "-content", str(content), "-certfile", str(CERT),
             "-noverify", "-out", str(verified),

@@ -5,17 +5,17 @@ set -euo pipefail
 # complete WildKernels toggleable feature bundle. The known-good UAPI5 tree is
 # treated as immutable input; all additional work happens in a new staging tree.
 
-SRC=/home/kyne/peridot-resukisu-uapi5
-BASE=/home/kyne/peridot-resukisu-uapi5-fullbundle-20261004
+SRC=${BAKASU_CI_SOURCE:-$HOME/peridot-resukisu-uapi5}
+BASE=${BAKASU_CI_STAGE:-$HOME/peridot-resukisu-uapi5-fullbundle-20261004}
 COMMON="$BASE/common"
 OUT="$BASE/out-fullbundle"
-PUBLIC_OUT=/mnt/c/Dev/peridot-hyperos4-port/builder/work/resukisu-uapi5-fullbundle-20261004
-STOCK_PUBLIC=/mnt/c/Dev/peridot-hyperos4-port/.cache/resukisu-uapi5-finalize/stock-module-public.pem
+PUBLIC_OUT=${BAKASU_CI_OUTPUT:-/mnt/c/Dev/peridot-hyperos4-port/builder/work/resukisu-uapi5-fullbundle-20261004}
+STOCK_PUBLIC=${BAKASU_CI_STOCK_CERT:-/mnt/c/Dev/peridot-hyperos4-port/.cache/resukisu-uapi5-finalize/stock-module-public.pem}
 EXPECTED_RELEASE=6.1.138-android14-11-g0c3d559bcd85-ab14529422
 STOCK_LOCALVERSION=-android14-11-g0c3d559bcd85-ab14529422
 
 COMMON_SHA=0c3d559bcd85c64dae9c9c9687abbe5347fff3ad
-RESUKISU_SHA=8770c7e324a22895703c4916b8a16520e0b81c79
+RESUKISU_SHA=${BAKASU_CI_SHA:-8770c7e324a22895703c4916b8a16520e0b81c79}
 SUSFS_SHA=24743360ea08d98f6ad72b856851abed8de5854f
 WILDKERNELS_SHA=e0ecd61219baaa0c3eae821246e31136302fd0dc
 KERNEL_PATCHES_SHA=41ae18b35d20e0c6ac04116785a4a1089528ae94
@@ -49,7 +49,7 @@ apply_patch_file() {
 
 stage "Clone preserved UAPI5 source state"
 mkdir -p "$BASE"
-for tree in common ReSukiSU susfs4ksu; do
+for tree in common susfs4ksu; do
   [[ -d "$SRC/$tree" ]] || die "Required preserved source tree missing: $SRC/$tree"
   if command -v rsync >/dev/null 2>&1; then
     rsync -a "$SRC/$tree/" "$BASE/$tree/"
@@ -58,10 +58,34 @@ for tree in common ReSukiSU susfs4ksu; do
   fi
 done
 
+if [[ -n "${BAKASU_CI_SHA:-}" ]]; then
+  [[ "$BAKASU_CI_SHA" =~ ^[0-9a-f]{40}$ ]] || die "Invalid BakaSU commit SHA"
+  # CI only: fresh upstream source checkout; known-good common + SUSFS remain pinned.
+  clone_pin https://github.com/Baka-SU/BakaSU.git "$BASE/ReSukiSU" "$BAKASU_CI_SHA"
+  [[ -f "$BASE/ReSukiSU/kernel/Kbuild" ]] || die "BakaSU kernel/Kbuild missing"
+  [[ -f "$BASE/ReSukiSU/uapi/supercall.h" ]] || die "BakaSU UAPI source missing"
+else
+  [[ -d "$SRC/ReSukiSU" ]] || die "Known-good ReSukiSU source missing"
+  if command -v rsync >/dev/null 2>&1; then
+    rsync -a "$SRC/ReSukiSU/" "$BASE/ReSukiSU/"
+  else
+    cp -a "$SRC/ReSukiSU" "$BASE/ReSukiSU"
+  fi
+fi
+
 [[ "$(git -C "$COMMON" rev-parse HEAD)" == "$COMMON_SHA" ]] || die "common source pin mismatch"
 [[ "$(git -C "$BASE/ReSukiSU" rev-parse HEAD)" == "$RESUKISU_SHA" ]] || die "ReSukiSU pin mismatch"
 [[ "$(git -C "$BASE/susfs4ksu" rev-parse HEAD)" == "$SUSFS_SHA" ]] || die "SUSFS pin mismatch"
 grep -q 'KERNEL_SU_UAPI_VERSION = 5' "$BASE/ReSukiSU/uapi/supercall.h" || die "ReSukiSU is not UAPI 5"
+
+# BakaSU intentionally suspended SUSFS inline builds on 2026-10-10.
+# Stop BEFORE expensive WildKernels patch downloads and kernel compilation.
+# Do not remove the upstream guard or change to a different hooking mode.
+SUSFS_COMPAT="$BASE/ReSukiSU/kernel/tools/susfs_compat.mk"
+[[ -f "$SUSFS_COMPAT" ]] || die "Missing BakaSU SUSFS compatibility source"
+if grep -Eq '^[[:space:]]*\$\([[:space:]]*error([[:space:]]|\))' "$SUSFS_COMPAT"; then
+  die "BakaSU upstream explicitly suspends SUSFS inline builds at $RESUKISU_SHA. Preserve current SUSFS/WildKernels pins; retry only after upstream restores compatibility."
+fi
 
 mkdir -p "$OUT" "$PUBLIC_OUT"
 cp "$SRC/out-uapi5/.config" "$OUT/.config"

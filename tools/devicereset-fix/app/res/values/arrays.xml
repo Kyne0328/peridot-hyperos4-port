@@ -1,0 +1,6 @@
+<resources>
+    <string-array name="xposed_scope">
+        <item>io.github.gjr787878.devicereset</item>
+        <item>com.mcdonalds.mobileapp</item>
+    </string-array>
+</resources>

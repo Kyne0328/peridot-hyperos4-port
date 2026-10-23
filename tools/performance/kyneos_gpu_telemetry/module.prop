@@ -1,0 +1,6 @@
+id=kyneos_gpuclk_telemetry
+name=KyneOS GPU Clock Telemetry Read Policy
+version=1.0
+versionCode=1
+author=KyneOS
+description=Read-only GPU clock telemetry access for Xiaomi system_app collectors on POCO F6; SELinux enforcing retained.

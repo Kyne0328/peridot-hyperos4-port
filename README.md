@@ -6,6 +6,13 @@ The Global configuration combines POCO F6 `OS3.0.303.0.WNPMIXM` hardware and
 firmware with Xiaomi 17 `OS4.0.0.9.XPCMIXM` userspace. The builder also includes
 the earlier Madrid configuration; use the source lock for the build you select.
 
+## Latest ROM source status
+
+The latest documented full ROM is KyneOS RI8 (2026-10-14), which has
+**not yet passed a real device flash and boot test**. See
+[RI8 release status](docs/RI8-RELEASE-STATUS.md) and
+[performance experiments](docs/PERFORMANCE-EXPERIMENTS.md).
+
 ## Contents
 
 - `builder/` — Python builder, device configurations, source locks, and tests.
@@ -52,7 +59,8 @@ Set `ANDROID_SERIAL` for the device verification scripts that use it.
 ## Installation
 
 Use the instructions supplied with the exact ROM release. Back up your data
-before flashing. Initial installation of a decrypted build requires Format Data.
+before flashing. Encryption and Format Data requirements depend on the exact installed build
+and recovery; check compatibility and backups before flashing.
 Installer writes are not atomic, and the other slot is not a rollback after the
 shared super partition is replaced.
 

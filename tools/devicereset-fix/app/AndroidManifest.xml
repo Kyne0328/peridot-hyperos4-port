@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="io.kyne.deviceresetfix" android:versionCode="3" android:versionName="1.2">
+    <uses-sdk android:minSdkVersion="28" android:targetSdkVersion="37" />
+    <application android:label="DeviceReset Vector Compatibility" android:allowBackup="false" android:hasCode="true">
+        <meta-data android:name="xposedmodule" android:value="true" />
+        <meta-data android:name="xposeddescription" android:value="Repairs DeviceResetSpooferX 4.5.0 scope management and identity ownership for Vector. Includes a read-only McDonald's identity probe." />
+        <meta-data android:name="xposedminversion" android:value="82" />
+        <meta-data android:name="xposedscope" android:resource="@array/xposed_scope" />
+    </application>
+</manifest>

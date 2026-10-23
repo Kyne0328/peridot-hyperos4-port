@@ -1,0 +1,144 @@
+name: POCO F6 BakaSU + SUSFS + WildKernels
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/peridot-bakasu-fullbundle.yml'
+      - 'tools/resukisu-addon/**'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Build even when this upstream revision already has a validated artifact'
+        type: boolean
+        default: false
+  repository_dispatch:
+    types: [bakasu-updated]
+
+concurrency:
+  group: peridot-bakasu-fullbundle
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    name: Check BakaSU upstream and artifact history
+    runs-on: ubuntu-24.04
+    timeout-minutes: 8
+    permissions:
+      contents: read
+      actions: read
+    outputs:
+      upstream_sha: ${{ steps.detect.outputs.upstream_sha }}
+      changed: ${{ steps.detect.outputs.changed }}
+      build_required: ${{ steps.detect.outputs.build_required }}
+      susfs_status: ${{ steps.detect.outputs.susfs_status }}
+      previous_image_sha: ${{ steps.detect.outputs.previous_image_sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Validate watcher
+        run: python3 -m unittest discover -s tools/resukisu-addon/ci -p 'test_*.py' -v
+      - name: Poll official BakaSU main and successful artifacts
+        id: detect
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          BAKASU_FORCE_BUILD: ${{ github.event_name == 'workflow_dispatch' && inputs.force == true }}
+        run: python3 tools/resukisu-addon/ci/watch_upstream.py
+      - name: Explain required initial input bundle
+        if: ${{ vars.BAKASU_INPUT_BUNDLE_URL == '' || vars.BAKASU_INPUT_BUNDLE_SHA256 == '' }}
+        run: echo '::warning::GitHub-hosted kernel build requires one-time prepared source/stock bundle URL and SHA256 repository variables; upstream watcher still works.'
+
+  kernel:
+    name: Build POCO F6 kernel and validate stock modules
+    needs: [watch]
+    if: github.event_name != 'push' && needs.watch.outputs.build_required == 'true' && vars.BAKASU_INPUT_BUNDLE_URL != '' && vars.BAKASU_INPUT_BUNDLE_SHA256 != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 350
+    permissions:
+      contents: read
+    env:
+      BAKASU_CI_SHA: ${{ needs.watch.outputs.upstream_sha }}
+      BAKASU_CI_PREVIOUS_IMAGE_SHA: ${{ needs.watch.outputs.previous_image_sha }}
+      BAKASU_CI_SOURCE: ${{ github.workspace }}/.ci-inputs/source
+      BAKASU_CI_ASSET_ROOT: ${{ github.workspace }}/.ci-inputs/assets
+      BAKASU_CI_STOCK_CERT: ${{ github.workspace }}/.ci-inputs/assets/.cache/resukisu-uapi5-finalize/stock-module-public.pem
+      BAKASU_INPUT_BUNDLE_URL: ${{ vars.BAKASU_INPUT_BUNDLE_URL }}
+      BAKASU_INPUT_BUNDLE_SHA256: ${{ vars.BAKASU_INPUT_BUNDLE_SHA256 }}
+      BAKASU_CI_STAGE: ${{ github.workspace }}/.ci-stage-peridot-bakasu-${{ github.run_id }}
+      BAKASU_CI_OUTPUT: ${{ github.workspace }}/builder/work/bakasu-${{ github.run_id }}
+      BAKASU_CI_PACKAGE_OUT: ${{ github.workspace }}/builder/work/bakasu-artifacts-${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Prepare GitHub-hosted Linux build tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          df -h .
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends git rsync patch clang lld llvm make bc bison flex libssl-dev libelf-dev dwarves zstd openssl python3-cryptography
+          python3 -c 'import cryptography'
+          df -h .
+      - name: Fetch SHA-256 pinned stock and source inputs
+        shell: bash
+        run: python3 tools/resukisu-addon/ci/fetch_hosted_inputs.py
+      - name: Verify isolated runner and stock inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$BAKASU_CI_SOURCE" && test -d "$BAKASU_CI_SOURCE/common"
+          test -f "$BAKASU_CI_SOURCE/out-uapi5/.config"
+          test -s "$BAKASU_CI_SOURCE/out-uapi5/arch/arm64/boot/Image"
+          test -n "$BAKASU_CI_ASSET_ROOT" && test -d "$BAKASU_CI_ASSET_ROOT"
+          test ! -e "$BAKASU_CI_ASSET_ROOT/.private" || { echo 'Never expose ROM signing keys to unattended upstream builds' >&2; exit 1; }
+          test -d "$BAKASU_CI_ASSET_ROOT/.cache/resukisu-candidate/system_dlkm-extracted/lib"
+          test -d "$BAKASU_CI_ASSET_ROOT/.cache/resukisu-candidate/vendor_dlkm-extracted/lib"
+          test -f "$BAKASU_CI_ASSET_ROOT/00-manifest/resukisu-candidate/kernel_aarch64_Module.symvers"
+          test -f "$BAKASU_CI_ASSET_ROOT/.cache/global-single-recovery-ri2/source-images/images/vendor_boot.img"
+          test -f "$BAKASU_CI_ASSET_ROOT/.cache/global-single-recovery-ri2/source-images/images/boot.img"
+          if [ -z "$BAKASU_CI_STOCK_CERT" ]; then
+            echo "BAKASU_CI_STOCK_CERT=$BAKASU_CI_ASSET_ROOT/.cache/resukisu-uapi5-finalize/stock-module-public.pem" >> "$GITHUB_ENV"
+          fi
+          test -s "$BAKASU_CI_ASSET_ROOT/.cache/resukisu-uapi5-finalize/stock-module-public.pem"
+          test ! -e "$BAKASU_CI_STAGE" && test ! -e "$BAKASU_CI_OUTPUT"
+          for tool in git patch rsync make clang llvm-nm python3 openssl; do command -v "$tool" >/dev/null || { echo "Missing: $tool" >&2; exit 1; }; done
+          python3 -c 'import cryptography'
+          clang --version | head -n 1
+          git --version
+      - name: Build exact BakaSU revision with original pinned SUSFS and full WildKernels feature set
+        shell: bash
+        run: bash tools/resukisu-addon/build_uapi5_full_bundle.sh
+      - name: Check module CRCs, symbol imports, stock module signatures and kernel release
+        shell: bash
+        run: python3 tools/resukisu-addon/verify_uapi5_full_bundle.py
+      - name: Package guarded update and rollback candidates without signing keys
+        shell: bash
+        run: python3 tools/resukisu-addon/ci/package_candidate.py
+      - name: Publish build identity only after all validation gates pass
+        id: identity
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json, os, pathlib
+          rec = json.loads((pathlib.Path(os.environ['BAKASU_CI_PACKAGE_OUT']) / 'candidate-validation.json').read_text())
+          assert rec['status'] == 'candidate-packaging-verified'
+          assert rec['stock_module_compatibility_passed'] and rec['signed'] is False and rec['device_tested'] is False
+          assert rec['upstream_sha'] == os.environ['BAKASU_CI_SHA']
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+              out.write(f"upstream_sha={rec['upstream_sha']}\nimage_sha={rec['image_sha256']}\n")
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as out:
+              out.write('### BakaSU UAPI5 POCO F6 candidate\n\n')
+              out.write('All 10 WildKernels/SUSFS features preserved; stock module ABI checks passed.\n\n')
+              out.write('Three UNSIGNED artifacts: update, rollback to pinned full bundle, rollback to stock.\n\n')
+              out.write('**Not device-tested; never auto-flash.**\n')
+          PY
+      - name: Upload candidate builds (not automatically published as releases)
+        uses: actions/upload-artifact@v4
+        with:
+          name: bakasu-peridot-${{ steps.identity.outputs.upstream_sha }}-${{ steps.identity.outputs.image_sha }}
+          path: ${{ env.BAKASU_CI_PACKAGE_OUT }}/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0

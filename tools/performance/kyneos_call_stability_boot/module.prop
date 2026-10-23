@@ -1,0 +1,6 @@
+id=kyneos_call_stability_boot
+name=KyneOS Peridot Call Stability Defaults
+version=1.0
+versionCode=1
+author=KyneOS
+description=Boot-only conservative Messenger Doze and Chrome ANGLE setting preservation; no thermal, SELinux, CPU, memory, camera or codec changes.
